@@ -44,6 +44,14 @@ array = {
     end,
 
     slice = function(obj, start, finish)
+        if array.is_empty(obj) then return {} end
+
+        local output = {}
+        for i=start, finish or #obj do
+            table.insert(output, obj[i])
+        end
+
+        return output
     end,
 
     reverse = function(obj)

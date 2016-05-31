@@ -57,3 +57,28 @@ end)
 test('last should returns last item from table', function()
     assert_equal(array.last({ 'a', 'b', 'c', 'd' }), 'd')
 end)
+
+test('slice should returns a empty table when it does not have any element', function()
+    assert_equal(#array.slice({}, 1, 2), 0)
+end)
+
+test('slice should returns a table with values between start index and end index', function()
+    local result = array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2, 4)
+
+    assert_equal(type(result), 'table')
+    assert_equal(#result, 3)
+    assert_equal(result[1], 'javascript')
+    assert_equal(result[2], 'python')
+    assert_equal(result[3], 'ruby')
+end)
+
+test('slice should returns a table with every values from start index until last index', function()
+    local result = array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2)
+
+    assert_equal(type(result), 'table')
+    assert_equal(#result, 4)
+    assert_equal(result[1], 'javascript')
+    assert_equal(result[2], 'python')
+    assert_equal(result[3], 'ruby')
+    assert_equal(result[4], 'c')
+end)
