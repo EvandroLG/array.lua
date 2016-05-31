@@ -1,3 +1,7 @@
+local function is_table(obj)
+    return type(obj) == 'table'
+end
+
 local array = {
     __VERSION = '1.0.0',
     __DESCRIPTION = '',
@@ -24,7 +28,7 @@ local array = {
 
 array = {
     is_array = function(obj)
-        if type(obj) ~= 'table' then return false end
+        if not is_table(obj) then return false end
 
         local i = 0
         for _ in pairs(obj) do
@@ -46,9 +50,13 @@ array = {
     end,
 
     first = function(obj)
+        if not array.is_array(obj) then return nil end
+        return obj[1]
     end,
 
     last = function(obj)
+        if not array.is_array(obj) then return nil end
+        return obj[#obj]
     end,
 
     each = function(obj, callback)

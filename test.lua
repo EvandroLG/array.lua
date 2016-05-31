@@ -41,3 +41,19 @@ end)
 test('is_empty should returns false when table does not have any item', function()
     assert_equal(array.is_empty({}), true)
 end)
+
+test('first should returns nil when table is working like a dictionary', function()
+    assert_equal(array.first({language='lua'}), nil)
+end)
+
+test('first should returns first item from table', function()
+    assert_equal(array.first({ 'a', 'b', 'c', 'd' }), 'a')
+end)
+
+test('last should returns nil when table is working like a dictionary', function()
+    assert_equal(array.last({language='lua'}), nil)
+end)
+
+test('last should returns last item from table', function()
+    assert_equal(array.last({ 'a', 'b', 'c', 'd' }), 'd')
+end)
