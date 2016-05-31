@@ -92,3 +92,15 @@ test('reverse should returns an inverted table', function()
     assert_equal(result[2], 'javascript')
     assert_equal(result[3], 'lua')
 end)
+
+test('map should returns a table with 2, 4, 6 values', function()
+    local result = array.map({ 1, 2, 3 }, function(value)
+        return value * 2
+    end)
+
+    assert_equal(type(result), 'table')
+    assert_equal(#result, 3)
+    assert_equal(result[1], 2)
+    assert_equal(result[2], 4)
+    assert_equal(result[3], 6)
+end)

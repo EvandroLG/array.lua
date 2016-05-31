@@ -78,7 +78,14 @@ array = {
     end,
 
     map = function(obj, callback)
-    end,
+        local output = {}
+
+        for i=1, #obj do
+            table.insert(output, callback(obj[i], i))
+        end
+
+        return output
+    end
 }
 
 return array
