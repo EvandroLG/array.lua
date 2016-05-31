@@ -33,3 +33,11 @@ end)
 test('is_array should returns true when table is working like an array', function()
     assert_equal(array.is_array({ 'a', 'b', 'c', 'd' }), true)
 end)
+
+test('is_empty should returns false when table has at least one item', function()
+    assert_equal(array.is_empty({ 'a' }), false)
+end)
+
+test('is_empty should returns false when table does not have any item', function()
+    assert_equal(array.is_empty({}), true)
+end)

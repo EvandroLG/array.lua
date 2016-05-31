@@ -36,6 +36,7 @@ array = {
     end,
 
     is_empty = function(obj)
+        return array.is_array(obj) and #obj == 0
     end,
 
     slice = function(obj, start, finish)
