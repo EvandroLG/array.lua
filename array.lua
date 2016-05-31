@@ -55,6 +55,13 @@ array = {
     end,
 
     reverse = function(obj)
+        local output = {}
+
+        for i=#obj, 1, -1 do
+            table.insert(output, obj[i])
+        end
+
+        return output
     end,
 
     first = function(obj)

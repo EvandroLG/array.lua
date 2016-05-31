@@ -82,3 +82,13 @@ test('slice should returns a table with every values from start index until last
     assert_equal(result[3], 'ruby')
     assert_equal(result[4], 'c')
 end)
+
+test('reverse should returns an inverted table', function()
+    local result = array.reverse({ 'lua', 'javascript', 'python' })
+
+    assert_equal(type(result), 'table')
+    assert_equal(#result, 3)
+    assert_equal(result[1], 'python')
+    assert_equal(result[2], 'javascript')
+    assert_equal(result[3], 'lua')
+end)
