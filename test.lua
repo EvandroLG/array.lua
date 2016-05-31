@@ -104,3 +104,15 @@ test('map should returns a table with 2, 4, 6 values', function()
     assert_equal(result[2], 4)
     assert_equal(result[3], 6)
 end)
+
+test('filter should returns a table with 10, 15, 20 values', function()
+    local result = array.filter({ 15, 10, 5, 3, 20 }, function(value)
+        return value >= 10
+    end)
+
+    assert_equal(type(result), 'table')
+    assert_equal(#result, 3)
+    assert_equal(result[1], 15)
+    assert_equal(result[2], 10)
+    assert_equal(result[3], 20)
+end)

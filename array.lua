@@ -85,6 +85,18 @@ array = {
         end
 
         return output
+    end,
+
+    filter = function(obj, callback)
+        local output = {}
+
+        for i=1, #obj do
+            if callback(obj[i], i) then
+                table.insert(output, obj[i])
+            end
+        end
+
+        return output
     end
 }
 
