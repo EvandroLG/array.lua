@@ -116,3 +116,19 @@ test('filter should returns a table with 10, 15, 20 values', function()
     assert_equal(result[2], 10)
     assert_equal(result[3], 20)
 end)
+
+test('max should returns the biggest value from a table', function()
+    assert_equal(array.max({ 20, 22, 1, 3, 30, 42 }), 42)
+end)
+
+test('max should returns nil when table is empty', function()
+    assert_equal(array.max({}), nil)
+end)
+
+test('min should returns the smallest value from a table', function()
+    assert_equal(array.min({ 20, 22, 1, 3, 30, 42 }), 1)
+end)
+
+test('min should returns nil when table is empty', function()
+    assert_equal(array.min({}), nil)
+end)

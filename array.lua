@@ -74,7 +74,28 @@ array = {
         return obj[#obj]
     end,
 
-    each = function(obj, callback)
+    max = function(obj)
+        local max = obj[1]
+
+        for i=2, #obj do
+            if obj[i] > max then
+                max = obj[i]
+            end
+        end
+
+        return max
+    end,
+
+    min = function(obj)
+        local min = obj[1]
+
+        for i=2, #obj do
+            if obj[i] < min then
+                min = obj[i]
+            end
+        end
+
+        return min
     end,
 
     map = function(obj, callback)
