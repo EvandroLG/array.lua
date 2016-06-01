@@ -118,6 +118,22 @@ array = {
         end
 
         return output
+    end,
+
+    reduce = function(obj, callback)
+        local memo = 0
+
+        for i=1, #obj do
+            memo = callback(memo, obj[i], i)
+        end
+
+        return memo
+    end,
+
+    sum = function(obj)
+    end,
+
+    select = function(obj, callback)
     end
 }
 

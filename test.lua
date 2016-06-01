@@ -132,3 +132,11 @@ end)
 test('min should returns nil when table is empty', function()
     assert_equal(array.min({}), nil)
 end)
+
+test('reduce should returns 90', function()
+    local result = array.reduce({ 20, 30, 40 }, function(memo, value)
+        return memo + value
+    end)
+
+    assert_equal(result, 90)
+end)
