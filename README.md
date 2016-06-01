@@ -15,4 +15,4 @@ A small library with useful methods to handle Lua's table when it's working like
 * array.<code>min(object:table):*</code> Returns the minimum value in a table
 * array.<code>map(object:table, callback:function):table</code> Creates a new table of values by mapping each value in list through a transformation function
 * array.<code>filter(object:table, callback:function):table</code> Produces a new table containing all elements that pass truth test
-* array.<code>reduce(object:table, callback:function):table</code> Applies a function against an accumulator and each value of the table to reduce it to a single value
+* array.<code>reduce(object:table, callback:function):*</code> Applies a function against an accumulator and each value of the table to reduce it to a single value
