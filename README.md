@@ -10,7 +10,7 @@ Or simply copy the array.lua file and paste in your project.
 
 ## Methods
 * array.<code>is_array(object:table):boolean</code>
-* Checks if table is an Array
+  Checks if table is an Array
 
 * array.<code>is_empty(object:table):boolean</code>
 Checks if table is empty
