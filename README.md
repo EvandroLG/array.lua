@@ -1,4 +1,4 @@
-# array
+# array.lua
 A small library with useful methods to handle Lua's table when it's working like an Array
 
 ## Installation
