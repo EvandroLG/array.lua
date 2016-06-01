@@ -2,6 +2,11 @@
 A small library with useful methods to handle Lua's table when it's working like an Array
 
 ## Installation
+To install array, run:
+```sh
+$ luarocks install array
+```
+Or simply copy the array.lua file and paste in your project.
 
 ## Methods
 * array.<code>is_array(object:table):boolean</code> Checks if table is an Array
