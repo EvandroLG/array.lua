@@ -140,3 +140,11 @@ test('reduce should returns 90', function()
 
     assert_equal(result, 90)
 end)
+
+test('index_of should returns correct position of value in the table', function()
+    assert_equal(array.index_of({ 20, 30, 40, 50 }, 40), 3)
+end)
+
+test('index_of should returns -1 when the value is not in the table', function()
+    assert_equal(array.index_of({ 20, 30, 40 }, 50), -1)
+end)

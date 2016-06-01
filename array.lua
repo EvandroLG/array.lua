@@ -54,6 +54,16 @@ array = {
         return output
     end,
 
+    index_of = function(obj, value)
+        for i=1, #obj do
+            if obj[i] == value then
+                return i
+            end
+        end
+
+        return -1
+    end,
+
     reverse = function(obj)
         local output = {}
 
@@ -128,12 +138,6 @@ array = {
         end
 
         return memo
-    end,
-
-    sum = function(obj)
-    end,
-
-    select = function(obj, callback)
     end
 }
 
