@@ -141,6 +141,14 @@ test('reduce should returns 90', function()
     assert_equal(result, 90)
 end)
 
+test('reduce should returns 100', function()
+    local result = array.reduce({ 20, 30, 40 }, function(memo, value)
+        return memo + value
+    end, 10)
+
+    assert_equal(result, 100)
+end)
+
 test('index_of should returns correct position of value in the table', function()
     assert_equal(array.index_of({ 20, 30, 40, 50 }, 40), 3)
 end)

@@ -130,14 +130,14 @@ array = {
         return output
     end,
 
-    reduce = function(obj, callback)
-        local memo = 0
+    reduce = function(obj, callback, memo)
+        local _memo = memo or 0
 
         for i=1, #obj do
-            memo = callback(memo, obj[i], i)
+            _memo = callback(_memo, obj[i], i)
         end
 
-        return memo
+        return _memo
     end
 }
 
