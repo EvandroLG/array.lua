@@ -9,7 +9,7 @@ $ luarocks install array
 Or simply copy the array.lua file and paste in your project.
 
 ## Methods
-* array.<code>is_array(object:table):boolean</code>__
+* array.<code>is_array(object:table):boolean</code><br />
 Checks if table is an Array
 
 * array.<code>is_empty(object:table):boolean</code>__
