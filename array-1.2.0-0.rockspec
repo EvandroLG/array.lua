@@ -1,9 +1,9 @@
 package = 'array'
-version = '1.0.1-0'
+version = '1.2.0-0'
 
 source = {
   url = 'git://github.com/evandrolg/array.lua.git',
-  tag = 'v1.0.1'
+  tag = 'v1.2.'
 }
 
 description = {
