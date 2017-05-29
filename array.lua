@@ -146,6 +146,18 @@ array = {
     end
 
     return obj
+  end,
+
+  uniq = function(obj)
+    local output = {}
+
+    for i=1, #obj do
+      if array.index_of(output, obj[i]) == -1 then
+        table.insert(output, obj[i])
+      end
+    end
+
+    return output
   end
 }
 

@@ -163,3 +163,13 @@ test('concat should join the two array', function()
   assert_equal(#result, 6)
   assert_equal(result[4], 4)
 end)
+
+test('uniq should return every value once', function()
+  local result = array.uniq({ 'a', 'b', 'a', 'b', 'c', 'd' })
+
+  assert_equal(#result, 4)
+  assert_equal(result[1], 'a')
+  assert_equal(result[2], 'b')
+  assert_equal(result[3], 'c')
+  assert_equal(result[4], 'd')
+end)
