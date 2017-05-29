@@ -3,7 +3,7 @@ version = '1.2.0-0'
 
 source = {
   url = 'git://github.com/evandrolg/array.lua.git',
-  tag = 'v1.2.'
+  tag = 'v1.2.0'
 }
 
 description = {
