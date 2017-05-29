@@ -157,14 +157,14 @@ test('index_of should returns -1 when the value is not in the table', function()
   assert_equal(array.index_of({ 20, 30, 40 }, 50), -1)
 end)
 
-test('concat should join the two array', function()
+test('concat should joins the two array', function()
   local result = array.concat({ 1, 2, 3 }, { 4, 5, 6 })
 
   assert_equal(#result, 6)
   assert_equal(result[4], 4)
 end)
 
-test('uniq should return every value once', function()
+test('uniq should returns every value once', function()
   local result = array.uniq({ 'a', 'b', 'a', 'b', 'c', 'd' })
 
   assert_equal(#result, 4)
@@ -172,4 +172,10 @@ test('uniq should return every value once', function()
   assert_equal(result[2], 'b')
   assert_equal(result[3], 'c')
   assert_equal(result[4], 'd')
+end)
+
+test('without should returns all values less the items from second array', function()
+  local result = array.without({ 10, 20, 30, 10, 4 }, { 10, 4 })
+
+  assert_equal(#result, 3)
 end)

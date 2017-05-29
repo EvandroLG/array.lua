@@ -158,6 +158,18 @@ array = {
     end
 
     return output
+  end,
+
+  without = function(obj, values)
+    local output = {}
+
+    for i=1, #obj do
+      if array.index_of(values, obj[i]) == -1 then
+        table.insert(output, obj[i])
+      end
+    end
+
+    return output
   end
 }
 
