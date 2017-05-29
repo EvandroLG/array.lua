@@ -2,8 +2,10 @@ local function is_table(obj)
   return type(obj) == 'table'
 end
 
-local array = {
-  __VERSION = '1.0.0',
+local array = {}
+
+array = {
+  __VERSION = '1.2.0',
   __DESCRIPTION = "A small library with useful methods to handle Lua's table when it's working like an Array",
   __LICENCE = [[
   The MIT License (MIT)
@@ -23,10 +25,8 @@ local array = {
   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
-  ]]
-}
+  ]],
 
-array = {
   is_array = function(obj)
     if not is_table(obj) then return false end
 

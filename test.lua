@@ -18,6 +18,12 @@ function assert_equal(a, b)
   assert(_equal(a, b))
 end
 
+test('meta infos', function()
+  assert_equal(array.__VERSION, '1.2.0')
+  assert_equal(array.__DESCRIPTION,
+  "A small library with useful methods to handle Lua's table when it's working like an Array")
+end)
+
 test('is_array should returns false when object is not a table', function()
   assert_equal(array.is_array('lua'), false)
 end)
