@@ -44,3 +44,12 @@ Produces a new table containing all elements that pass truth test
 
 * array.<code>reduce(object:table, callback:function [, memo]):*</code><br />
 Applies a function against an accumulator and each value of the table to reduce it to a single value
+
+* array.<code>concat(object:table, object:table):table</code><br />
+Returns a new table by joining all values from the two tables
+
+* array.<code>uniq(object:table):table</code><br />
+Returns a new table by removing duplicates values
+
+* array.<code>without(object:table, object:table):table</code><br />
+Returns a copy of the table with all instances of the values removed

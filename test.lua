@@ -177,5 +177,7 @@ end)
 test('without should returns all values less the items from second array', function()
   local result = array.without({ 10, 20, 30, 10, 4 }, { 10, 4 })
 
-  assert_equal(#result, 3)
+  assert_equal(#result, 2)
+  assert_equal(result[1], 20)
+  assert_equal(result[2], 30)
 end)
