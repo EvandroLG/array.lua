@@ -1,8 +1,17 @@
+-- Hash.lua
+-- author: Evandro Leopoldino Gonçalves <evandrolgoncalves@gmail.com>
+-- https://github.com/evandrolg
+-- License: MIT
+
 local function is_table(obj)
   return type(obj) == 'table'
 end
 
-local array = {}
+local function raises_error(obj, param, method)
+  assert(obj.is_array(param), string.format('%s expects an array', method))
+end
+
+local array
 
 array = {
   __VERSION = '1.2.0',
@@ -44,6 +53,8 @@ array = {
   end,
 
   slice = function(obj, start, finish)
+    raises_error(array, obj, 'slice')
+
     if array.is_empty(obj) then return {} end
 
     local output = {}
@@ -55,6 +66,8 @@ array = {
   end,
 
   index_of = function(obj, value)
+    raises_error(array, obj, 'index_of')
+
     for i=1, #obj do
       if obj[i] == value then
         return i
@@ -65,6 +78,8 @@ array = {
   end,
 
   reverse = function(obj)
+    raises_error(array, obj, 'reverse')
+
     local output = {}
 
     for i=#obj, 1, -1 do
@@ -75,16 +90,18 @@ array = {
   end,
 
   first = function(obj)
-    if not array.is_array(obj) then return nil end
+    raises_error(array, obj, 'first')
     return obj[1]
   end,
 
   last = function(obj)
-    if not array.is_array(obj) then return nil end
+    raises_error(array, obj, 'last')
     return obj[#obj]
   end,
 
   max = function(obj)
+    raises_error(array, obj, 'max')
+
     local max = obj[1]
 
     for i=2, #obj do
@@ -97,6 +114,8 @@ array = {
   end,
 
   min = function(obj)
+    raises_error(array, obj, 'min')
+
     local min = obj[1]
 
     for i=2, #obj do
@@ -109,6 +128,8 @@ array = {
   end,
 
   map = function(obj, callback)
+    raises_error(array, obj, 'map')
+
     local output = {}
 
     for i=1, #obj do
@@ -119,6 +140,8 @@ array = {
   end,
 
   filter = function(obj, callback)
+    raises_error(array, obj, 'filter')
+
     local output = {}
 
     for i=1, #obj do
@@ -131,6 +154,8 @@ array = {
   end,
 
   reduce = function(obj, callback, memo)
+    raises_error(array, obj, 'reduce')
+
     local _memo = memo or 0
 
     for i=1, #obj do
@@ -141,6 +166,9 @@ array = {
   end,
 
   concat = function(obj, obj2)
+    raises_error(array, obj, 'concat')
+    raises_error(array, obj2, 'concat')
+
     for i=1, #obj2 do
       table.insert(obj, obj2[i])
     end
@@ -149,6 +177,8 @@ array = {
   end,
 
   uniq = function(obj)
+    raises_error(array, obj, 'uniq')
+
     local output = {}
 
     for i=1, #obj do
@@ -161,6 +191,8 @@ array = {
   end,
 
   without = function(obj, values)
+    raises_error(array, obj, 'without')
+
     local output = {}
 
     for i=1, #obj do
