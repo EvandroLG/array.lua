@@ -1,4 +1,4 @@
--- Hash.lua
+-- array
 -- author: Evandro Leopoldino Gonçalves <evandrolgoncalves@gmail.com>
 -- https://github.com/evandrolg
 -- License: MIT
