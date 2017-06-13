@@ -1,21 +1,19 @@
 local array = require 'array'
-local format = string.format
 
-function test(name, func)
-  xpcall(function()
-    func()
-    print(format('[pass] %s', name))
-  end, function(err)
-  print(format('[fail] %s : %s', name, err))
-end)
-end
-
-function _equal(a, b)
-  return a == b
+do
+  local format = string.format
+  function test(name, callback)
+    xpcall(function()
+      callback()
+      print(format('[pass] %s', name))
+    end, function(err)
+      print(format('[fail] %s : %s', name, err))
+    end)
+  end
 end
 
 function assert_equal(a, b)
-  assert(_equal(a, b))
+  assert(a == b)
 end
 
 test('meta infos', function()
@@ -48,16 +46,8 @@ test('is_empty should returns false when table does not have any item', function
   assert_equal(array.is_empty({}), true)
 end)
 
-test('first should returns nil when table is working like a dictionary', function()
-  assert_equal(array.first({language='lua'}), nil)
-end)
-
 test('first should returns first item from table', function()
   assert_equal(array.first({ 'a', 'b', 'c', 'd' }), 'a')
-end)
-
-test('last should returns nil when table is working like a dictionary', function()
-  assert_equal(array.last({language='lua'}), nil)
 end)
 
 test('last should returns last item from table', function()
