@@ -1,6 +1,9 @@
 # array.lua
 A small library with useful methods to handle Lua's table when it's working like an Array
 
+[![Build
+Status](https://travis-ci.org/EvandroLG/str.svg?branch=master)](https://travis-ci.org/EvandroLG/str)
+
 ## Installation
 To install array, run:
 ```sh
