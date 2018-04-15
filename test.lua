@@ -43,6 +43,14 @@ test('slice should returns a empty table when it does not have any element', fun
   a.equal(#array.slice({}, 1, 2), 0)
 end)
 
+test('contains should return true when it does have the element', function(a)
+  a.equal(array.contains({'a', 'b', 'c'}, 'b'), true)
+end)
+
+test('contains should return false when it does not have the element', function(a)
+  a.equal(array.contains({'a', 'b', 'c'}, 'd'), false)
+end)
+
 test('slice should returns a table with values between start index and end index', function(a)
   local result = array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2, 4)
 
