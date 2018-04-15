@@ -202,6 +202,16 @@ array = {
     end
 
     return output
+  end,
+
+  contains = function(obj, value)
+    raises_error(array, obj, 'contains')
+    for i=1, #obj do
+      if obj[i] == value then
+        return true
+      end
+    end
+    return false
   end
 }
 
