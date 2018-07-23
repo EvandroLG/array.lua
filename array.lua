@@ -202,6 +202,18 @@ array = {
     end
 
     return output
+  end,
+
+  some = function(obj, callback)
+    raises_error(array, obj, 'some')
+
+    for i=1, #obj do
+      if callback(obj[i], i) then
+        return true
+      end
+    end
+
+    return false
   end
 }
 

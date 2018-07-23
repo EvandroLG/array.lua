@@ -162,3 +162,19 @@ test('without should returns all values less the items from second array', funct
   a.equal(result[1], 20)
   a.equal(result[2], 30)
 end)
+
+test('some should return true when exist at least one match', function(a)
+  local result = array.some({'a', 'b', 'c'}, function(element)
+    if (element == 'b') then return true end
+  end)
+
+  a.ok(result)
+end)
+
+test('some should return true when exist at least one match', function(a)
+  local result = array.some({'a', 'b', 'c'}, function(element)
+    if (element == 'd') then return true end
+  end)
+
+  a.not_ok(result)
+end)
