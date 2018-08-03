@@ -218,8 +218,9 @@ array = {
 
   zip = function(obj1, obj2)
     local output = {}
+    local size = #obj1 > #obj2 and #obj2 or #obj1
 
-    for i=1, #obj1 do
+    for i=1, size do
       table.insert(output, { obj1[i], obj2[i] })
     end
 
