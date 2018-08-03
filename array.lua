@@ -217,6 +217,9 @@ array = {
   end,
 
   zip = function(obj1, obj2)
+    raises_error(array, obj1, 'zip')
+    raises_error(array, obj2, 'zip')
+
     local output = {}
     local size = #obj1 > #obj2 and #obj2 or #obj1
 
