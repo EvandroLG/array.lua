@@ -214,6 +214,16 @@ array = {
     end
 
     return false
+  end,
+
+  zip = function(obj1, obj2)
+    local output = {}
+
+    for i=1, #obj1 do
+      table.insert(output, { obj1[i], obj2[i] })
+    end
+
+    return output
   end
 }
 

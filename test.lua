@@ -178,3 +178,12 @@ test('some should return true when exist at least one match', function(a)
 
   a.not_ok(result)
 end)
+
+test('zip should return a new table with the correct pairs', function(a)
+  local result = array.zip({ 'a', 'b' }, { 'A', 'B' })
+
+  a.equal(result[1][1], 'a')
+  a.equal(result[1][2], 'A')
+  a.equal(result[2][1], 'b')
+  a.equal(result[2][2], 'B')
+end)
