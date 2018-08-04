@@ -252,6 +252,20 @@ array = {
     end
 
     return output
+  end,
+
+  deepCopy = function(value)
+    local output = value
+
+    if type(value) == 'table' then
+      output = {}
+
+      for i=1, #value do
+        table.insert(output, array.deepCopy(value[i]))
+      end
+    end
+
+    return output
   end
 }
 
