@@ -240,6 +240,18 @@ array = {
     end
 
     return true
+  end,
+
+  shallowCopy = function(obj)
+    raises_error(array, obj, 'shallowCopy')
+
+    local output = {}
+
+    for i=1, #obj do
+      table.insert(output, obj[i])
+    end
+
+    return output
   end
 }
 
