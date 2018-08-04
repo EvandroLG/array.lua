@@ -228,6 +228,18 @@ array = {
     end
 
     return output
+  end,
+
+  every = function(obj, callback)
+    raises_error(array, obj, 'some')
+
+    for i=1, #obj do
+      if not callback(obj[i], i) then
+        return false
+      end
+    end
+
+    return true
   end
 }
 

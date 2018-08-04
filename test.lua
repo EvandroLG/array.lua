@@ -199,3 +199,19 @@ test('zip should not consider values without pairs', function(a)
   a.equal(result[2][1], 'b')
   a.equal(result[2][2], 'B')
 end)
+
+test('every should return true when all elements in the table pass the callback test', function(a)
+  local result = array.every({ 10, 20, 30 }, function(value)
+    return value >= 10
+  end)
+
+  a.ok(result)
+end)
+
+test('every should return false when at least a match fails', function(a)
+  local result = array.every({ 10, 20, 30 }, function(value)
+    return value > 10
+  end)
+
+  a.not_ok(result)
+end)
