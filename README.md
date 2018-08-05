@@ -56,3 +56,18 @@ Returns a new table by removing duplicates values
 
 * array.<code>without(object:table, object:table):table</code><br />
 Returns a copy of the table with all instances of the values removed
+
+* array.<code>some(object:table, callback:function):boolean</code><br />
+Tests whether at least one element in the table passes the test implemented by the callback
+
+* array.<code>every(object:table, callback:function):boolean</code><br />
+Tests whether all elements in the table passes the test implemented by the callback
+
+* array.<code>zip(object:table, object:table):table</code><br />
+Returns a table of the two supplied by pairing up equally-positioned elements from both tables
+
+* array.<code>shallowCopy(object:table):table</code><br />
+Returns a shallow copy of the table passed as parameter
+
+* array.<code>deepCopy(object:table):table</code><br />
+Returns a deep copy of the table passed as parameter
