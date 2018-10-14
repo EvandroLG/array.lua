@@ -169,11 +169,17 @@ array = {
     raises_error(array, obj, 'concat')
     raises_error(array, obj2, 'concat')
 
-    for i=1, #obj2 do
-      table.insert(obj, obj2[i])
+    local output = {}
+
+    for i=1, #obj do
+      table.insert(output, obj[i])
     end
 
-    return obj
+    for i=1, #obj2 do
+      table.insert(output, obj2[i])
+    end
+
+    return output
   end,
 
   uniq = function(obj)
