@@ -254,12 +254,12 @@ test('deepCopy should return a deep copy of the array passed as parameter', func
   a.equal(type(result[1]), 'table')
 end)
 
-test('diff should returns a new table with the items which exist only in first table', function(a)
+test('diff should return a new table with the items which exist only in first table', function(a)
   local result = array.diff(
     { 'a', 'b' },
     { 'a', 'c', 'd' }
   )
 
   a.equal(#result, 1)
-  a.equal(result[1], 'a')
+  a.equal(result[1], 'b')
 end)

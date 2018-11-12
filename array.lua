@@ -278,16 +278,16 @@ array = {
     local output = {}
 
     for i=1, #obj1 do
-      local has_diff = false
-      local value = obj[i]
+      local has_value = false
+      local value = obj1[i]
 
       for j=1, #obj2 do
-        if value ~= obj2[j] then
-          has_diff = true
+        if value == obj2[j] then
+          has_value = true
         end
       end
 
-      if has_diff then
+      if not has_value then
         table.insert(output, value)
       end
     end
