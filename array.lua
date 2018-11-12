@@ -272,6 +272,27 @@ array = {
     end
 
     return output
+  end,
+
+  diff = function(obj1, obj2)
+    local output = {}
+
+    for i=1, #obj1 do
+      local has_diff = false
+      local value = obj[i]
+
+      for j=1, #obj2 do
+        if value ~= obj2[j] then
+          has_diff = true
+        end
+      end
+
+      if has_diff then
+        table.insert(output, value)
+      end
+    end
+
+    return output
   end
 }
 
