@@ -66,8 +66,11 @@ Tests whether all elements in the table passes the test implemented by the callb
 * array.<code>zip(object:table, object:table):table</code><br />
 Returns a table of the two supplied by pairing up equally-positioned elements from both tables
 
-* array.<code>shallowCopy(object:table):table</code><br />
+* array.<code>shallow_copy(object:table):table</code><br />
 Returns a shallow copy of the table passed as parameter
 
-* array.<code>deepCopy(object:table):table</code><br />
+* array.<code>deep_copy(object:table):table</code><br />
 Returns a deep copy of the table passed as parameter
+
+* array.<code>diff(object:table, object:table):table</code><br />
+Returns a new table with the items which exist only in the first table
