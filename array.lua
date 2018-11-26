@@ -248,7 +248,7 @@ array = {
     return true
   end,
 
-  shallowCopy = function(obj)
+  shallow_copy = function(obj)
     raises_error(array, obj, 'shallowCopy')
 
     local output = {}
@@ -260,14 +260,14 @@ array = {
     return output
   end,
 
-  deepCopy = function(value)
+  deep_copy = function(value)
     local output = value
 
     if type(value) == 'table' then
       output = {}
 
       for i=1, #value do
-        table.insert(output, array.deepCopy(value[i]))
+        table.insert(output, array.deep_copy(value[i]))
       end
     end
 

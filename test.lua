@@ -216,13 +216,13 @@ test('every should return false when at least a match fails', function(a)
   a.not_ok(result)
 end)
 
-test('shallowCopy should return a shallow copy of the array passed as parameter', function(a)
+test('shallow_copy should return a shallow copy of the array passed as parameter', function(a)
   local obj = {
     { 'a' },
     { 'b' }
   }
 
-  local result = array.shallowCopy(obj)
+  local result = array.shallow_copy(obj)
 
   a.equal(#result, #obj)
   a.equal(result[1][1], obj[1][1])
@@ -235,13 +235,13 @@ test('shallowCopy should return a shallow copy of the array passed as parameter'
   a.equal(type(result[1]), 'table')
 end)
 
-test('deepCopy should return a deep copy of the array passed as parameter', function(a)
+test('deep_copy should return a deep copy of the array passed as parameter', function(a)
   local obj = {
     { 'a' },
     { 'b' }
   }
 
-  local result = array.deepCopy(obj)
+  local result = array.deep_copy(obj)
 
   a.equal(#result, #obj)
   a.equal(result[1][1], obj[1][1])
