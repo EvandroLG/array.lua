@@ -2,7 +2,7 @@ local array = require 'array'
 local test = require 'simple_test'
 
 test('meta infos', function(a)
-  a.equal(array.__VERSION, '1.2.1')
+  a.equal(array.__VERSION, '1.2.3')
   a.equal(array.__DESCRIPTION,
   "A small library with useful methods to handle Lua's table when it's working like an Array")
 end)
