@@ -186,10 +186,13 @@ array = {
     raises_error(array, obj, 'uniq')
 
     local output = {}
+    local seen = {}
 
     for i=1, #obj do
-      if array.index_of(output, obj[i]) == -1 then
-        table.insert(output, obj[i])
+      local value = obj[i]
+      if not seen[value] then
+        seen[value] = true
+        table.insert(output, value)
       end
     end
 
