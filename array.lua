@@ -249,7 +249,7 @@ array = {
   end,
 
   shallow_copy = function(obj)
-    raises_error(array, obj, 'shallowCopy')
+    raises_error(array, obj, 'shallow_copy')
 
     local output = {}
 
@@ -261,6 +261,8 @@ array = {
   end,
 
   deep_copy = function(value)
+    raises_error(array, value, 'deep_copy')
+
     local output = value
 
     if type(value) == 'table' then
@@ -275,6 +277,9 @@ array = {
   end,
 
   diff = function(obj1, obj2)
+    raises_error(array, obj1, 'diff')
+    raises_error(array, obj2, 'diff')
+
     local output = {}
 
     for i=1, #obj1 do
