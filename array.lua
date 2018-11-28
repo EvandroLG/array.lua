@@ -261,8 +261,6 @@ array = {
   end,
 
   deep_copy = function(value)
-    raises_error(array, value, 'deep_copy')
-
     local output = value
 
     if type(value) == 'table' then
