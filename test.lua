@@ -2,7 +2,7 @@ local array = require 'array'
 local test = require 'simple_test'
 
 test('meta infos', function(a)
-  a.equal(array.__VERSION, '1.2.4')
+  a.equal(array.__VERSION, '1.2.5')
   a.equal(array.__DESCRIPTION,
   "A small library with useful methods to handle Lua's table when it's working like an Array")
 end)
@@ -262,4 +262,11 @@ test('diff should return a new table with the items which exist only in first ta
 
   a.equal(#result, 1)
   a.equal(result[1], 'b')
+end)
+
+test('flat should return a new table that is an one-dimensional flatting of the table passed by parameter', function(a)
+  local obj = { 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' }
+  local result = array.flat(obj)
+
+  a.equal(10, #result)
 end)

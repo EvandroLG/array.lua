@@ -74,3 +74,6 @@ Returns a deep copy of the table passed as parameter
 
 * array.<code>diff(object:table, object:table):table</code><br />
 Returns a new table with the items which exist only in the first table
+
+* array.<code>flat(object:table):table</code><br />
+Creates a new table with the sub-table elements concatenated into it
