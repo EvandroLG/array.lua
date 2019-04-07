@@ -266,7 +266,7 @@ array = {
   deep_copy = function(value)
     local output = value
 
-    if type(value) == 'table' then
+    if is_table(value) then
       output = {}
 
       for i=1, #value do
