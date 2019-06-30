@@ -315,6 +315,24 @@ array = {
     end
 
     return output
+  end,
+
+  fill = function(value, start_or_finish, finish)
+    local output = {}
+    local item = value
+    local start = start_or_finish
+    local size = finish
+
+    if finish == nil then
+      start = 1
+      size = start_or_finish
+    end
+
+    for i=start, size do
+      output[i] = item
+    end
+
+    return output
   end
 }
 

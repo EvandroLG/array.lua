@@ -268,5 +268,28 @@ test('flat should return a new table that is an one-dimensional flatting of the 
   local obj = { 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' }
   local result = array.flat(obj)
 
-  a.equal(10, #result)
+  a.equal(#result, 10)
+end)
+
+test('fill should create a table with the size passed by parameter and fill every item using the value passed as argument', function(a)
+  local value = 1
+  local size = 3
+  local result = array.fill(value, size)
+
+  a.equal(#result, size)
+  a.equal(result[1], value)
+  a.equal(result[2], value)
+  a.equal(result[3], value)
+end)
+
+test('fill should create a table using the value passed by argument from start to end', function(a)
+  local value = 'a'
+  local start = 3
+  local finish = 4
+  local result = array.fill(value, start, finish)
+
+  a.equal(result[1], nil)
+  a.equal(result[2], nil)
+  a.equal(result[3], value)
+  a.equal(result[4], value)
 end)
