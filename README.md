@@ -77,3 +77,7 @@ Returns a new table with the items which exist only in the first table
 
 * array.<code>flat(object:table):table</code><br />
 Creates a new table with the sub-table elements concatenated into it
+
+* array.<code>fill(value:*, [start:number], end:number):table</code><br />
+Creates a table filling all the elements from a start index (default
+one) to an end index with a default value passed by parameter.
