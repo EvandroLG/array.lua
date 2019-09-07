@@ -3,10 +3,18 @@
 -- https://github.com/evandrolg
 -- License: MIT
 
+-- Helper function to check if value passed by parameter is a table
+-- @obj {table}
+-- @returns {boolean}
 local function is_table(obj)
   return type(obj) == 'table'
 end
 
+-- Raises error if @param is not an array
+-- @obj {table}
+-- @param {table}
+-- @method {string}
+-- @returns {void}
 local function raises_error(obj, param, method)
   assert(obj.is_array(param), string.format('%s expects an array', method))
 end
@@ -36,6 +44,9 @@ array = {
     SOFTWARE.
   ]],
 
+  -- Verify if table object works as an array
+  -- @obj {table}
+  -- @returns {boolean}
   is_array = function(obj)
     if not is_table(obj) then return false end
 
@@ -48,10 +59,18 @@ array = {
     return true
   end,
 
+  -- Check if parameter is an empty table
+  -- @obj {table}
+  -- @returns {boolean}
   is_empty = function(obj)
     return array.is_array(obj) and #obj == 0
   end,
 
+  -- Return a shallow copy of a portion of a table into a new table
+  -- @obj {table}
+  -- @start {number} start value
+  -- @finish {number} end value
+  -- @returns {boolean}
   slice = function(obj, start, finish)
     raises_error(array, obj, 'slice')
 
@@ -65,6 +84,10 @@ array = {
     return output
   end,
 
+  -- Return the index at which value can be found or -1 in case value is not present
+  -- @obj {table}
+  -- @value {*}
+  -- @returns {boolean}
   index_of = function(obj, value)
     raises_error(array, obj, 'index_of')
 
@@ -77,6 +100,9 @@ array = {
     return -1
   end,
 
+  -- Create a new table with reverse values
+  -- @obj {table}
+  -- @returns {table}
   reverse = function(obj)
     raises_error(array, obj, 'reverse')
 
@@ -89,16 +115,25 @@ array = {
     return output
   end,
 
+  -- Return first element from the table
+  -- @obj {table}
+  -- @returns {*}
   first = function(obj)
     raises_error(array, obj, 'first')
     return obj[1]
   end,
 
+  -- Return last element from the table
+  -- @obj {table}
+  -- @returns {*}
   last = function(obj)
     raises_error(array, obj, 'last')
     return obj[#obj]
   end,
 
+  -- Return maximum value from the table
+  -- @obj {table}
+  -- @returns {*}
   max = function(obj)
     raises_error(array, obj, 'max')
 
@@ -113,6 +148,9 @@ array = {
     return max
   end,
 
+  -- Return minimum value from the table
+  -- @obj {table}
+  -- @returns {*}
   min = function(obj)
     raises_error(array, obj, 'min')
 
@@ -127,6 +165,10 @@ array = {
     return min
   end,
 
+  -- Create a new table of values by mapping each value in table through a transformation function
+  -- @obj {table}
+  -- @callback {function}
+  -- @returns {*}
   map = function(obj, callback)
     raises_error(array, obj, 'map')
 
@@ -139,6 +181,10 @@ array = {
     return output
   end,
 
+  -- Create a new table containing all elements that pass truth test
+  -- @obj {table}
+  -- @callback {function}
+  -- @returns {*}
   filter = function(obj, callback)
     raises_error(array, obj, 'filter')
 
@@ -153,6 +199,11 @@ array = {
     return output
   end,
 
+  -- Applies a function against an accumulator and each value of the table to reduce it to a single value
+  -- @obj {table}
+  -- @callback {function}
+  -- @memo
+  -- @returns {*}
   reduce = function(obj, callback, memo)
     raises_error(array, obj, 'reduce')
 
@@ -165,6 +216,10 @@ array = {
     return _memo
   end,
 
+  -- Return a new table joining all values from the two tables passed by parameter
+  -- @obj {table}
+  -- @obj2 {table}
+  -- @returns {table}
   concat = function(obj, obj2)
     raises_error(array, obj, 'concat')
     raises_error(array, obj2, 'concat')
@@ -182,6 +237,9 @@ array = {
     return output
   end,
 
+  -- Create a new table, removing duplicates values
+  -- @obj {table}
+  -- @returns {table}
   uniq = function(obj)
     raises_error(array, obj, 'uniq')
 
@@ -199,6 +257,10 @@ array = {
     return output
   end,
 
+  -- Return a copy of the table with all instances of the values removed
+  -- @obj {table}
+  -- @values {table}
+  -- @returns {table}
   without = function(obj, values)
     raises_error(array, obj, 'without')
 
@@ -213,6 +275,10 @@ array = {
     return output
   end,
 
+  -- Tests if at least one element in the table passes the test implemented by the callback
+  -- @obj {table}
+  -- @callback {function}
+  -- @returns {boolean}
   some = function(obj, callback)
     raises_error(array, obj, 'some')
 
@@ -225,6 +291,10 @@ array = {
     return false
   end,
 
+  -- Return a table of the two supplied by pairing up equally-positioned elements from both tables
+  -- @obj {table}
+  -- @obj2 {table}
+  -- @returns {table}
   zip = function(obj1, obj2)
     raises_error(array, obj1, 'zip')
     raises_error(array, obj2, 'zip')
@@ -239,6 +309,10 @@ array = {
     return output
   end,
 
+  -- Return a table of the two supplied by pairing up equally-positioned elements from both tables
+  -- @obj {table}
+  -- @obj2 {table}
+  -- @returns {table}
   every = function(obj, callback)
     raises_error(array, obj, 'every')
 
@@ -251,6 +325,9 @@ array = {
     return true
   end,
 
+  -- Returns a shallow copy of the table passed as parameter
+  -- @obj {table}
+  -- @returns {table}
   shallow_copy = function(obj)
     raises_error(array, obj, 'shallow_copy')
 
@@ -263,6 +340,9 @@ array = {
     return output
   end,
 
+  -- Return a deep copy of the table passed as parameter
+  -- @value {*}
+  -- @returns {table}
   deep_copy = function(value)
     local output = value
 
@@ -277,6 +357,10 @@ array = {
     return output
   end,
 
+  -- Return a new table with the items which exist only in the first table
+  -- @obj {table}
+  -- @obj2 {table}
+  -- @returns {table}
   diff = function(obj1, obj2)
     raises_error(array, obj1, 'diff')
     raises_error(array, obj2, 'diff')
@@ -301,6 +385,10 @@ array = {
     return output
   end,
 
+  -- Create a new table with the sub-table elements concatenated into it
+  -- @obj {table}
+  -- @_memo {table}
+  -- @returns {table}
   flat = function(obj, _memo)
     local output = _memo or {}
 
@@ -317,6 +405,11 @@ array = {
     return output
   end,
 
+  -- Creates a table filling all the elements from a start index (default one) to an end index with a default value
+  -- @value {*}
+  -- @start_or_finish {number}
+  -- @finish {number}
+  -- @returns table
   fill = function(value, start_or_finish, finish)
     local output = {}
     local item = value
