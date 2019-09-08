@@ -202,14 +202,20 @@ array = {
   -- Applies a function against an accumulator and each value of the table to reduce it to a single value
   -- @obj {table}
   -- @callback {function}
-  -- @memo
+  -- @memo {*}
   -- @returns {*}
   reduce = function(obj, callback, memo)
     raises_error(array, obj, 'reduce')
 
-    local _memo = memo or 0
+    local initialIndex = 1
+    local _memo = memo
 
-    for i=1, #obj do
+    if _memo == nil then
+        initialIndex = 2
+        _memo = obj[1]
+    end
+
+    for i=initialIndex, #obj do
       _memo = callback(_memo, obj[i], i)
     end
 
