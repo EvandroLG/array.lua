@@ -146,6 +146,11 @@ test('reduce should concatenate all items', function(a)
   a.equal(result, 'abcde')
 end)
 
+test('sum should return sum of the values in table', function(a)
+  local result = array.sum({10, 20, 30, 40, 50})
+  a.equal(result, 150)
+end)
+
 test('index_of should return correct position of value in the table', function(a)
   a.equal(array.index_of({ 20, 30, 40, 50 }, 40), 3)
 end)

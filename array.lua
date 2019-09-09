@@ -222,6 +222,18 @@ array = {
     return _memo
   end,
 
+  -- Return the sum of the values in table
+  -- @obj {table}
+  -- @callback {function}
+  -- @returns {number}
+  sum = function(obj)
+    raises_error(array, obj, 'sum')
+
+    return array.reduce(obj, function(memo, value)
+      return memo + value
+    end)
+  end,
+
   -- Return a new table joining all values from the two tables passed by parameter
   -- @obj {table}
   -- @obj2 {table}
