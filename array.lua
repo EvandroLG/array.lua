@@ -76,8 +76,10 @@ array = {
 
     if array.is_empty(obj) then return {} end
 
+    local _start = start or 1
+
     local output = {}
-    for i=start, finish or #obj do
+    for i=_start, finish or #obj do
       table.insert(output, obj[i])
     end
 
@@ -441,6 +443,21 @@ array = {
 
     for i=start, size do
       output[i] = item
+    end
+
+    return output
+  end,
+
+  remove = function(obj, callback)
+    local output = {}
+    local copy = array.deep_copy(obj)
+
+    for i=1, #copy do
+      local value = copy[i]
+
+      if callback(value, i) then
+        table.insert(output, value)
+      end
     end
 
     return output

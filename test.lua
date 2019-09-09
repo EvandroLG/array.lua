@@ -314,3 +314,14 @@ test('fill should create a table using the value passed by argument from start t
   a.equal(result[3], value)
   a.equal(result[4], value)
 end)
+
+test('remove should return a new table with all elements from table that callback returns truthy for', function(a)
+  local list = { 1, 2, 3, 4 }
+  local result = array.remove(list, function(value)
+    return math.fmod(value, 2) == 0
+  end)
+
+  a.equal(#result, 2)
+  a.equal(result[1], 2)
+  a.equal(result[2], 4)
+end)
