@@ -429,7 +429,7 @@ array = {
   -- @value {*}
   -- @start_or_finish {number}
   -- @finish {number}
-  -- @returns table
+  -- @returns {table}
   fill = function(value, start_or_finish, finish)
     local output = {}
     local item = value
@@ -448,6 +448,11 @@ array = {
     return output
   end,
 
+  -- Remove all elements from table that @callback returns thruthy for
+  -- and returns a new table with the removed items
+  -- @obj {table}
+  -- @callback {function}
+  -- @returns {@table}
   remove = function(obj, callback)
     local output = {}
     local copy = array.deep_copy(obj)
@@ -457,6 +462,8 @@ array = {
 
       if callback(value, i) then
         table.insert(output, value)
+        local index = array.index_of(obj, value)
+        table.remove(obj, index)
       end
     end
 
