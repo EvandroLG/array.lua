@@ -48,6 +48,12 @@ Produces a new table containing all elements that pass truth test
 * array.<code>reduce(object:table, callback:function [, memo]):*</code><br />
 Applies a function against an accumulator and each value of the table to reduce it to a single value
 
+* array.<code>reduce_right(object:table, callback:function [, memo]):*</code><br />
+Works like `reduce` except that it interates over table's elements from right to left
+
+* array.<code>sum(object:table):number</code><br />
+Returns the sum of the values of the table passed by parameter
+
 * array.<code>concat(object:table, object:table):table</code><br />
 Returns a new table by joining all values from the two tables
 
@@ -81,3 +87,6 @@ Creates a new table with the sub-table elements concatenated into it
 * array.<code>fill(value:*, [start:number], end:number):table</code><br />
 Creates a table filling all the elements from a start index (default
 one) to an end index with a default value passed by parameter.
+
+* array.<code>remove(object:table, callback:function):table</code><br />
+Removes all elements from table that `callback` returns thruthy for and returns a new table with the removed elements
