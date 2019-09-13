@@ -224,6 +224,29 @@ array = {
     return _memo
   end,
 
+  -- This function is like reduce except that it interates over table's elements from right to left
+  -- @obj {table}
+  -- @callback {function}
+  -- @memo {*}
+  -- @returns {*}
+  reduce_right = function(obj, callback, memo)
+    raises_error(array, obj, 'reduce_right')
+
+    local initialIndex = #obj
+    local _memo = memo
+
+    if _memo == nil then
+      initialIndex = initialIndex - 1
+      _memo = obj[#obj]
+    end
+
+    for i=initialIndex, 1, -1 do
+      _memo = callback(_memo, obj[i], i)
+    end
+
+    return _memo
+  end,
+
   -- Return the sum of the values in table
   -- @obj {table}
   -- @callback {function}

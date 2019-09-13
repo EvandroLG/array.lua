@@ -146,6 +146,14 @@ test('reduce should concatenate all items', function(a)
   a.equal(result, 'abcde')
 end)
 
+test('reduce_right should concatenate all items starting from right to left', function(a)
+  local result = array.reduce_right({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
+    return memo .. value
+  end)
+
+  a.equal(result, 'edcba')
+end)
+
 test('sum should return sum of the values in table', function(a)
   local result = array.sum({10, 20, 30, 40, 50})
   a.equal(result, 150)
