@@ -49,7 +49,7 @@ Produces a new table containing all elements that pass truth test
 Applies a function against an accumulator and each value of the table to reduce it to a single value
 
 * array.<code>reduce_right(object:table, callback:function [, memo]):*</code><br />
-Works like `reduce` except that it interates over table's elements from right to left
+Works like `reduce` except that it iterates over table's elements from right to left
 
 * array.<code>sum(object:table):number</code><br />
 Returns the sum of the values of the table passed by parameter
@@ -89,4 +89,4 @@ Creates a table filling all the elements from a start index (default
 one) to an end index with a default value passed by parameter.
 
 * array.<code>remove(object:table, callback:function):table</code><br />
-Removes all elements from table that `callback` returns thruthy for and returns a new table with the removed elements
+Removes all elements from table that `callback` returns truthy for and returns a new table with the removed elements
