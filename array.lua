@@ -213,8 +213,8 @@ array = {
     local _memo = memo
 
     if _memo == nil then
-        initialIndex = 2
-        _memo = obj[1]
+      initialIndex = 2
+      _memo = obj[1]
     end
 
     for i=initialIndex, #obj do
