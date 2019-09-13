@@ -22,7 +22,7 @@ end
 local array
 
 array = {
-  __VERSION = '1.2.5',
+  __VERSION = '1.2.6',
   __DESCRIPTION = "A small library with useful methods to handle Lua's table when it's working like an Array",
   __LICENCE = [[
     The MIT License (MIT)
