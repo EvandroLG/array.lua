@@ -24,7 +24,7 @@ local array
 array = {
   __VERSION = '1.2.6',
   __DESCRIPTION = "A small library with useful methods to handle Lua's table when it's working like an Array",
-  __LICENCE = [[
+  __LICENSE = [[
     The MIT License (MIT)
     Copyright (c) 2017 Evandro Leopoldino Gonçalves
     Permission is hereby granted, free of charge, to any person obtaining a copy
