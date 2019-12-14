@@ -353,3 +353,12 @@ test('remove should delete items that callback returns thruthy and should return
   a.equal(result[1], 2)
   a.equal(result[2], 4)
 end)
+
+test('counter should return a new in hash format', function(a)
+  local list = { 'a', 'b', 'a', 'a', 'c', 'b' }
+  local result = array.counter(list)
+
+  a.equal(result.a, 3)
+  a.equal(result.b, 2)
+  a.equal(result.c, 1)
+end)

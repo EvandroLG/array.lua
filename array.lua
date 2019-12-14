@@ -491,6 +491,21 @@ array = {
     end
 
     return output
+  end,
+
+  -- Returns a new table in hash structure, where keys represent each array value
+  -- and value represent the number of times the same item was found in the list
+  -- @obj {table}
+  -- @returns {@table}
+  counter = function(obj)
+    local output = {}
+
+    for i=1, #obj do
+      local value = obj[i]
+      output[value] = (output[value] and output[value] or 0) + 1
+    end
+
+    return output
   end
 }
 
