@@ -19,6 +19,25 @@ local function raises_error(obj, param, method)
   assert(obj.is_array(param), string.format('%s expects an array', method))
 end
 
+-- Returns lowest value between two values
+-- @a {number}
+-- @b {number}
+-- @returns number
+local function lowest_value(a, b)
+  return a < b and a or b
+end
+
+-- Makes multiple inserts in a table (array-like)
+-- @obj {table}
+-- @values {table}
+-- @returns {void}
+local function multiple_inserts(obj, values)
+  for i=1, #values do
+    local value = values[i]
+    table.insert(obj, value)
+  end
+end
+
 local array
 
 array = {
@@ -503,6 +522,29 @@ array = {
     for i=1, #obj do
       local value = obj[i]
       output[value] = (output[value] and output[value] or 0) + 1
+    end
+
+    return output
+  end,
+
+  -- Returns a new table with the values that exist in both tables
+  -- @obj1 {table}
+  -- obj2 {table}
+  -- @returns {@table}
+  intersect = function(obj1, obj2)
+    local output = {}
+    local count1 = array.counter(obj1)
+    local count2 = array.counter(obj2)
+
+    for k, v in pairs(count1) do
+      if count2[k] then
+        local new_array = array.fill(
+          k,
+          lowest_value(v, count2[k])
+        )
+
+        multiple_inserts(output, new_array)
+      end
     end
 
     return output

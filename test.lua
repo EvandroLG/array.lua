@@ -362,3 +362,14 @@ test('counter should return a new in hash format', function(a)
   a.equal(result.b, 2)
   a.equal(result.c, 1)
 end)
+
+test('intersect should return a new table with the values that exist in both tables', function(a)
+  local first_list = { 'a', 'b', 'a', 'c', 'e', 'f', 'a' }
+  local second_list = { 'b', 'a', 'd', 'a' }
+  local result = array.intersect(first_list, second_list)
+
+  a.equal(#result, 3)
+  a.equal(result[1], 'b')
+  a.equal(result[2], 'a')
+  a.equal(result[3], 'a')
+end)
