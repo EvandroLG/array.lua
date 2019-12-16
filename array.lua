@@ -38,6 +38,17 @@ local function multiple_inserts(obj, values)
   end
 end
 
+local function convert_to_hash(obj)
+  local output = {}
+
+  for i=1, #obj do
+    local value = obj[i]
+    output[value] = true
+  end
+
+  return output
+end
+
 local array
 
 array = {
@@ -428,18 +439,12 @@ array = {
     raises_error(array, obj2, 'diff')
 
     local output = {}
+    local hash = convert_to_hash(obj2)
 
     for i=1, #obj1 do
-      local has_value = false
       local value = obj1[i]
 
-      for j=1, #obj2 do
-        if value == obj2[j] then
-          has_value = true
-        end
-      end
-
-      if not has_value then
+      if not hash[value] then
         table.insert(output, value)
       end
     end
