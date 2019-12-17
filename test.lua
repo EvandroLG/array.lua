@@ -1,4 +1,4 @@
-local array = require 'array'
+local array = require './src/array'
 local test = require 'simple_test'
 
 test('meta infos', function(a)
@@ -374,4 +374,11 @@ test('intersect should return a new table with the values that exist in both tab
   --a.equal(result[1], 'b')
   --a.equal(result[2], 'a')
   --a.equal(result[3], 'a')
+end)
+
+test('from_pairs should return a table composed from key-value pairs', function(a)
+  local result = array.from_pairs({ {'a', 1}, {'b', 2} })
+
+  a.equal(result.a, 1)
+  a.equal(result.b, 2)
 end)

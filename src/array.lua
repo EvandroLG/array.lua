@@ -1,42 +1,4 @@
--- array
--- author: Evandro Leopoldino Gonçalves <evandrolgoncalves@gmail.com>
--- https://github.com/evandrolg
--- License: MIT
-
--- Helper function to check if value passed by parameter is a table
--- @obj {table}
--- @returns {boolean}
-local function is_table(obj)
-  return type(obj) == 'table'
-end
-
--- Raises error if @param is not an array
--- @obj {table}
--- @param {table}
--- @method {string}
--- @returns {void}
-local function raises_error(obj, param, method)
-  assert(obj.is_array(param), string.format('%s expects an array', method))
-end
-
--- Returns lowest value between two values
--- @a {number}
--- @b {number}
--- @returns number
-local function lowest_value(a, b)
-  return a < b and a or b
-end
-
--- Makes multiple inserts in a table (array-like)
--- @obj {table}
--- @values {table}
--- @returns {void}
-local function multiple_inserts(obj, values)
-  for i=1, #values do
-    local value = values[i]
-    table.insert(obj, value)
-  end
-end
+local utils = require('./src/utils')
 
 local function convert_to_hash(obj)
   local output = {}
@@ -78,7 +40,7 @@ array = {
   -- @obj {table}
   -- @returns {boolean}
   is_array = function(obj)
-    if not is_table(obj) then return false end
+    if not utils.is_table(obj) then return false end
 
     local i = 0
     for _ in pairs(obj) do
@@ -102,7 +64,7 @@ array = {
   -- @finish {number} end value
   -- @returns {boolean}
   slice = function(obj, start, finish)
-    raises_error(array, obj, 'slice')
+    utils.raises_error(array, obj, 'slice')
 
     if array.is_empty(obj) then return {} end
 
@@ -121,7 +83,7 @@ array = {
   -- @value {*}
   -- @returns {boolean}
   index_of = function(obj, value)
-    raises_error(array, obj, 'index_of')
+    utils.raises_error(array, obj, 'index_of')
 
     for i=1, #obj do
       if obj[i] == value then
@@ -136,7 +98,7 @@ array = {
   -- @obj {table}
   -- @returns {table}
   reverse = function(obj)
-    raises_error(array, obj, 'reverse')
+    utils.raises_error(array, obj, 'reverse')
 
     local output = {}
 
@@ -151,7 +113,7 @@ array = {
   -- @obj {table}
   -- @returns {*}
   first = function(obj)
-    raises_error(array, obj, 'first')
+    utils.raises_error(array, obj, 'first')
     return obj[1]
   end,
 
@@ -159,7 +121,7 @@ array = {
   -- @obj {table}
   -- @returns {*}
   last = function(obj)
-    raises_error(array, obj, 'last')
+    utils.raises_error(array, obj, 'last')
     return obj[#obj]
   end,
 
@@ -167,7 +129,7 @@ array = {
   -- @obj {table}
   -- @returns {*}
   max = function(obj)
-    raises_error(array, obj, 'max')
+    utils.raises_error(array, obj, 'max')
 
     local max = obj[1]
 
@@ -184,7 +146,7 @@ array = {
   -- @obj {table}
   -- @returns {*}
   min = function(obj)
-    raises_error(array, obj, 'min')
+    utils.raises_error(array, obj, 'min')
 
     local min = obj[1]
 
@@ -202,7 +164,7 @@ array = {
   -- @callback {function}
   -- @returns {*}
   map = function(obj, callback)
-    raises_error(array, obj, 'map')
+    utils.raises_error(array, obj, 'map')
 
     local output = {}
 
@@ -218,7 +180,7 @@ array = {
   -- @callback {function}
   -- @returns {*}
   filter = function(obj, callback)
-    raises_error(array, obj, 'filter')
+    utils.raises_error(array, obj, 'filter')
 
     local output = {}
 
@@ -237,7 +199,7 @@ array = {
   -- @memo {*}
   -- @returns {*}
   reduce = function(obj, callback, memo)
-    raises_error(array, obj, 'reduce')
+    utils.raises_error(array, obj, 'reduce')
 
     local initialIndex = 1
     local _memo = memo
@@ -260,7 +222,7 @@ array = {
   -- @memo {*}
   -- @returns {*}
   reduce_right = function(obj, callback, memo)
-    raises_error(array, obj, 'reduce_right')
+    utils.raises_error(array, obj, 'reduce_right')
 
     local initialIndex = #obj
     local _memo = memo
@@ -282,7 +244,7 @@ array = {
   -- @callback {function}
   -- @returns {number}
   sum = function(obj)
-    raises_error(array, obj, 'sum')
+    utils.raises_error(array, obj, 'sum')
 
     return array.reduce(obj, function(memo, value)
       return memo + value
@@ -294,8 +256,8 @@ array = {
   -- @obj2 {table}
   -- @returns {table}
   concat = function(obj, obj2)
-    raises_error(array, obj, 'concat')
-    raises_error(array, obj2, 'concat')
+    utils.raises_error(array, obj, 'concat')
+    utils.raises_error(array, obj2, 'concat')
 
     local output = {}
 
@@ -314,7 +276,7 @@ array = {
   -- @obj {table}
   -- @returns {table}
   uniq = function(obj)
-    raises_error(array, obj, 'uniq')
+    utils.raises_error(array, obj, 'uniq')
 
     local output = {}
     local seen = {}
@@ -335,7 +297,7 @@ array = {
   -- @values {table}
   -- @returns {table}
   without = function(obj, values)
-    raises_error(array, obj, 'without')
+    utils.raises_error(array, obj, 'without')
 
     local output = {}
 
@@ -353,7 +315,7 @@ array = {
   -- @callback {function}
   -- @returns {boolean}
   some = function(obj, callback)
-    raises_error(array, obj, 'some')
+    utils.raises_error(array, obj, 'some')
 
     for i=1, #obj do
       if callback(obj[i], i) then
@@ -369,8 +331,8 @@ array = {
   -- @obj2 {table}
   -- @returns {table}
   zip = function(obj1, obj2)
-    raises_error(array, obj1, 'zip')
-    raises_error(array, obj2, 'zip')
+    utils.raises_error(array, obj1, 'zip')
+    utils.raises_error(array, obj2, 'zip')
 
     local output = {}
     local size = #obj1 > #obj2 and #obj2 or #obj1
@@ -387,7 +349,7 @@ array = {
   -- @obj2 {table}
   -- @returns {table}
   every = function(obj, callback)
-    raises_error(array, obj, 'every')
+    utils.raises_error(array, obj, 'every')
 
     for i=1, #obj do
       if not callback(obj[i], i) then
@@ -402,7 +364,7 @@ array = {
   -- @obj {table}
   -- @returns {table}
   shallow_copy = function(obj)
-    raises_error(array, obj, 'shallow_copy')
+    utils.raises_error(array, obj, 'shallow_copy')
 
     local output = {}
 
@@ -419,7 +381,7 @@ array = {
   deep_copy = function(value)
     local output = value
 
-    if is_table(value) then
+    if utils.is_table(value) then
       output = {}
 
       for i=1, #value do
@@ -435,8 +397,8 @@ array = {
   -- @obj2 {table}
   -- @returns {table}
   diff = function(obj1, obj2)
-    raises_error(array, obj1, 'diff')
-    raises_error(array, obj2, 'diff')
+    utils.raises_error(array, obj1, 'diff')
+    utils.raises_error(array, obj2, 'diff')
 
     local output = {}
     local hash = convert_to_hash(obj2)
@@ -462,7 +424,7 @@ array = {
     for i=1, #obj do
       local value = obj[i]
 
-      if is_table(value) then
+      if utils.is_table(value) then
         array.flat(value, output)
       else
         table.insert(output, value)
@@ -545,11 +507,24 @@ array = {
       if count2[k] then
         local new_array = array.fill(
           k,
-          lowest_value(v, count2[k])
+          utils.lowest_value(v, count2[k])
         )
 
-        multiple_inserts(output, new_array)
+        utils.multiple_inserts(output, new_array)
       end
+    end
+
+    return output
+  end,
+
+  from_pairs = function(obj)
+    utils.raises_error(array, obj, 'from_pairs')
+
+    local output = {}
+
+    for i=1, #obj do
+      local item = obj[i]
+      output[item[1]] = item[2]
     end
 
     return output
