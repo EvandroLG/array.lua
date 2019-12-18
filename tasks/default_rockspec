@@ -20,6 +20,7 @@ dependencies = {
 build = {
   type = "builtin",
   modules = {
-    ['array'] = "array.lua"
+    ["array"] = "src/array.lua",
+    ["array.utils"] = "src/utils.lua"
   }
 }
