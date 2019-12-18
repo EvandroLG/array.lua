@@ -90,3 +90,12 @@ one) to an end index with a default value passed by parameter.
 
 * array.<code>remove(object:table, callback:function):table</code><br />
 Removes all elements from table that `callback` returns truthy for and returns a new table with the removed elements
+
+* array.<code>counter(object:table):table</code><br />
+Returns a new table in hash structure, where keys represent each array value
+
+* array.<code>intersect(object:table, object:table):table</code><br />
+Returns a new table with the values that exist in both tables
+
+* array.<code>from_pairs(object:table, object:table):table</code><br />
+Returns a table composed from key-value pairs

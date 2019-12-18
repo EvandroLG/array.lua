@@ -517,6 +517,10 @@ array = {
     return output
   end,
 
+  -- Returns a table composed from key-value pairs
+  -- @obj1 {table}
+  -- obj2 {table}
+  -- @returns {@table}
   from_pairs = function(obj)
     utils.raises_error(array, obj, 'from_pairs')
 
