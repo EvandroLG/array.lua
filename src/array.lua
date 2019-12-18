@@ -1,4 +1,4 @@
-local utils = require('./src/utils')
+local utils = require('array.utils')
 
 local function convert_to_hash(obj)
   local output = {}
