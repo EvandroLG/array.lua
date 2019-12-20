@@ -37,8 +37,8 @@ array = {
   ]],
 
   -- Verify if table object works as an array
-  -- @obj {table}
-  -- @returns {boolean}
+  -- @param obj {table}
+  -- @return {boolean}
   is_array = function(obj)
     if not utils.is_table(obj) then return false end
 
@@ -52,17 +52,17 @@ array = {
   end,
 
   -- Check if parameter is an empty table
-  -- @obj {table}
-  -- @returns {boolean}
+  -- @param obj {table}
+  -- @return {boolean}
   is_empty = function(obj)
     return array.is_array(obj) and #obj == 0
   end,
 
   -- Return a shallow copy of a portion of a table into a new table
-  -- @obj {table}
-  -- @start {number} start value
-  -- @finish {number} end value
-  -- @returns {boolean}
+  -- @param obj {table}
+  -- @param start {number} start value
+  -- @param finish {number} end value
+  -- @return {boolean}
   slice = function(obj, start, finish)
     utils.raises_error(array, obj, 'slice')
 
@@ -79,9 +79,9 @@ array = {
   end,
 
   -- Return the index at which value can be found or -1 in case value is not present
-  -- @obj {table}
-  -- @value {*}
-  -- @returns {boolean}
+  -- @param obj {table}
+  -- @param value {*}
+  -- @return {boolean}
   index_of = function(obj, value)
     utils.raises_error(array, obj, 'index_of')
 
@@ -95,8 +95,8 @@ array = {
   end,
 
   -- Create a new table with reverse values
-  -- @obj {table}
-  -- @returns {table}
+  -- @param obj {table}
+  -- @return {table}
   reverse = function(obj)
     utils.raises_error(array, obj, 'reverse')
 
@@ -110,24 +110,24 @@ array = {
   end,
 
   -- Return first element from the table
-  -- @obj {table}
-  -- @returns {*}
+  -- @param obj {table}
+  -- @return {*}
   first = function(obj)
     utils.raises_error(array, obj, 'first')
     return obj[1]
   end,
 
   -- Return last element from the table
-  -- @obj {table}
-  -- @returns {*}
+  -- @param obj {table}
+  -- @return {*}
   last = function(obj)
     utils.raises_error(array, obj, 'last')
     return obj[#obj]
   end,
 
   -- Return maximum value from the table
-  -- @obj {table}
-  -- @returns {*}
+  -- @param obj {table}
+  -- @return {*}
   max = function(obj)
     utils.raises_error(array, obj, 'max')
 
@@ -143,8 +143,8 @@ array = {
   end,
 
   -- Return minimum value from the table
-  -- @obj {table}
-  -- @returns {*}
+  -- @param obj {table}
+  -- @return {*}
   min = function(obj)
     utils.raises_error(array, obj, 'min')
 
@@ -160,9 +160,9 @@ array = {
   end,
 
   -- Create a new table of values by mapping each value in table through a transformation function
-  -- @obj {table}
-  -- @callback {function}
-  -- @returns {*}
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {*}
   map = function(obj, callback)
     utils.raises_error(array, obj, 'map')
 
@@ -176,9 +176,9 @@ array = {
   end,
 
   -- Create a new table containing all elements that pass truth test
-  -- @obj {table}
-  -- @callback {function}
-  -- @returns {*}
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {*}
   filter = function(obj, callback)
     utils.raises_error(array, obj, 'filter')
 
@@ -194,10 +194,10 @@ array = {
   end,
 
   -- Applies a function against an accumulator and each value of the table to reduce it to a single value
-  -- @obj {table}
-  -- @callback {function}
-  -- @memo {*}
-  -- @returns {*}
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @param memo {table}
+  -- @return {*}
   reduce = function(obj, callback, memo)
     utils.raises_error(array, obj, 'reduce')
 
@@ -217,10 +217,10 @@ array = {
   end,
 
   -- This function is like reduce except that it interates over table's elements from right to left
-  -- @obj {table}
-  -- @callback {function}
-  -- @memo {*}
-  -- @returns {*}
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @param memo {table}
+  -- @return {*}
   reduce_right = function(obj, callback, memo)
     utils.raises_error(array, obj, 'reduce_right')
 
@@ -240,9 +240,9 @@ array = {
   end,
 
   -- Return the sum of the values in table
-  -- @obj {table}
-  -- @callback {function}
-  -- @returns {number}
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {number}
   sum = function(obj)
     utils.raises_error(array, obj, 'sum')
 
@@ -252,9 +252,9 @@ array = {
   end,
 
   -- Return a new table joining all values from the two tables passed by parameter
-  -- @obj {table}
-  -- @obj2 {table}
-  -- @returns {table}
+  -- @param obj {table}
+  -- @param obj2 {table}
+  -- @return {table}
   concat = function(obj, obj2)
     utils.raises_error(array, obj, 'concat')
     utils.raises_error(array, obj2, 'concat')
@@ -273,8 +273,8 @@ array = {
   end,
 
   -- Create a new table, removing duplicates values
-  -- @obj {table}
-  -- @returns {table}
+  -- @param obj {table}
+  -- @return {table}
   uniq = function(obj)
     utils.raises_error(array, obj, 'uniq')
 
@@ -293,9 +293,9 @@ array = {
   end,
 
   -- Return a copy of the table with all instances of the values removed
-  -- @obj {table}
-  -- @values {table}
-  -- @returns {table}
+  -- @param obj {table}
+  -- @param values {table}
+  -- @return {table}
   without = function(obj, values)
     utils.raises_error(array, obj, 'without')
 
@@ -311,9 +311,9 @@ array = {
   end,
 
   -- Tests if at least one element in the table passes the test implemented by the callback
-  -- @obj {table}
-  -- @callback {function}
-  -- @returns {boolean}
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {boolean}
   some = function(obj, callback)
     utils.raises_error(array, obj, 'some')
 
@@ -327,9 +327,9 @@ array = {
   end,
 
   -- Return a table of the two supplied by pairing up equally-positioned elements from both tables
-  -- @obj {table}
-  -- @obj2 {table}
-  -- @returns {table}
+  -- @param obj {table}
+  -- @param obj2 {table}
+  -- @return {table}
   zip = function(obj1, obj2)
     utils.raises_error(array, obj1, 'zip')
     utils.raises_error(array, obj2, 'zip')
@@ -345,9 +345,9 @@ array = {
   end,
 
   -- Return a table of the two supplied by pairing up equally-positioned elements from both tables
-  -- @obj {table}
-  -- @obj2 {table}
-  -- @returns {table}
+  -- @param obj {table}
+  -- @param obj2 {table}
+  -- @return {table}
   every = function(obj, callback)
     utils.raises_error(array, obj, 'every')
 
@@ -360,9 +360,9 @@ array = {
     return true
   end,
 
-  -- Returns a shallow copy of the table passed as parameter
-  -- @obj {table}
-  -- @returns {table}
+  -- return a shallow copy of the table passed as parameter
+  -- @param obj {table}
+  -- @return {table}
   shallow_copy = function(obj)
     utils.raises_error(array, obj, 'shallow_copy')
 
@@ -376,8 +376,8 @@ array = {
   end,
 
   -- Return a deep copy of the table passed as parameter
-  -- @value {*}
-  -- @returns {table}
+  -- @param value {*}
+  -- @return {table}
   deep_copy = function(value)
     local output = value
 
@@ -393,9 +393,9 @@ array = {
   end,
 
   -- Return a new table with the items which exist only in the first table
-  -- @obj {table}
-  -- @obj2 {table}
-  -- @returns {table}
+  -- @param obj {table}
+  -- @param obj2 {table}
+  -- @return {table}
   diff = function(obj1, obj2)
     utils.raises_error(array, obj1, 'diff')
     utils.raises_error(array, obj2, 'diff')
@@ -415,9 +415,9 @@ array = {
   end,
 
   -- Create a new table with the sub-table elements concatenated into it
-  -- @obj {table}
-  -- @_memo {table}
-  -- @returns {table}
+  -- @param obj {table}
+  -- @param _memo {table}
+  -- @return {table}
   flat = function(obj, _memo)
     local output = _memo or {}
 
@@ -435,10 +435,10 @@ array = {
   end,
 
   -- Creates a table filling all the elements from a start index (default one) to an end index with a default value
-  -- @value {*}
-  -- @start_or_finish {number}
-  -- @finish {number}
-  -- @returns {table}
+  -- @param value {*}
+  -- @param start_or_finish {number}
+  -- @param finish {number}
+  -- @return {table}
   fill = function(value, start_or_finish, finish)
     local output = {}
     local item = value
@@ -457,11 +457,11 @@ array = {
     return output
   end,
 
-  -- Remove all elements from table that @callback returns thruthy for
-  -- and returns a new table with the removed items
-  -- @obj {table}
-  -- @callback {function}
-  -- @returns {@table}
+  -- Remove all elements from table that @callback return thruthy for
+  -- and return a new table with the removed items
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {table}
   remove = function(obj, callback)
     local output = {}
     local copy = array.deep_copy(obj)
@@ -479,10 +479,10 @@ array = {
     return output
   end,
 
-  -- Returns a new table in hash structure, where keys represent each array value
+  -- Return a new table in hash structure, where keys represent each array value
   -- and value represent the number of times the same item was found in the list
-  -- @obj {table}
-  -- @returns {@table}
+  -- @param obj {table}
+  -- @return {table}
   counter = function(obj)
     local output = {}
 
@@ -494,10 +494,10 @@ array = {
     return output
   end,
 
-  -- Returns a new table with the values that exist in both tables
-  -- @obj1 {table}
-  -- obj2 {table}
-  -- @returns {@table}
+  -- Return a new table with the values that exist in both tables
+  -- @param obj1 {table}
+  -- @param obj2 {table}
+  -- @return {table}
   intersect = function(obj1, obj2)
     local output = {}
     local count1 = array.counter(obj1)
@@ -517,10 +517,10 @@ array = {
     return output
   end,
 
-  -- Returns a table composed from key-value pairs
-  -- @obj1 {table}
-  -- obj2 {table}
-  -- @returns {@table}
+  -- Return a table composed from key-value pairs
+  -- @param obj1 {table}
+  -- @param obj2 {table}
+  -- @return {table}
   from_pairs = function(obj)
     utils.raises_error(array, obj, 'from_pairs')
 
