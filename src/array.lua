@@ -171,15 +171,16 @@ array = {
   filter = function(obj, callback)
     utils.raises_error(array, obj, 'filter')
 
-    local output = {}
-
-    for i=1, #obj do
-      if callback(obj[i], i) then
-        table.insert(output, obj[i])
+    local initial_value = {}
+    local reducer = function(acc, current)
+      if callback(current) then
+        table.insert(acc, current)
       end
+
+      return acc
     end
 
-    return output
+    return array.reduce(obj, reducer, initial_value)
   end,
 
   -- Applies a function against an accumulator and each value of the table to reduce it to a single value
