@@ -384,3 +384,17 @@ test('from_pairs should return a table composed from key-value pairs', function(
   a.equal(result.a, 1)
   a.equal(result.b, 2)
 end)
+
+test('includes should determine whether value exists in table', function(a)
+  local list = { 'a', 'b', 'c' }
+
+  a.equal(
+    array.includes(list, 'c'),
+    true
+  )
+
+  a.equal(
+    array.includes(list, 'd'),
+    false
+  )
+end)

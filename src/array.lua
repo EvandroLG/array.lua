@@ -70,7 +70,7 @@ array = {
   -- Return the index at which value can be found or -1 in case value is not present
   -- @param obj {table}
   -- @param value {*}
-  -- @return {boolean}
+  -- @return {number}
   index_of = function(obj, value)
     utils.raises_error(array, obj, 'index_of')
 
@@ -81,6 +81,19 @@ array = {
     end
 
     return -1
+  end,
+
+  -- Return true whether table includes the values, otherwise it returns false
+  -- @param obj {table}
+  -- @param value {*}
+  -- @return {boolean}
+  includes = function(obj, value)
+    utils.raises_error(array, obj, 'includes')
+
+    local index = array.index_of(obj, value)
+
+    if index == -1 then return false end
+    return true
   end,
 
   -- Create a new table with reverse values
@@ -288,7 +301,6 @@ array = {
   -- @return {table}
   without = function(obj, values)
     utils.raises_error(array, obj, 'without')
-
     local output = {}
 
     for i=1, #obj do
