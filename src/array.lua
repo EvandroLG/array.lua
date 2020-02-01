@@ -301,15 +301,17 @@ array = {
   -- @return {table}
   without = function(obj, values)
     utils.raises_error(array, obj, 'without')
-    local output = {}
 
-    for i=1, #obj do
-      if array.index_of(values, obj[i]) == -1 then
-        table.insert(output, obj[i])
+    local initial_value = {}
+    local reducer = function(accumulator, current)
+      if (array.includes(values, current) == false) then
+        table.insert(accumulator, current)
       end
+
+      return accumulator
     end
 
-    return output
+    return array.reduce(obj, reducer, initial_value)
   end,
 
   -- Tests if at least one element in the table passes the test implemented by the callback
