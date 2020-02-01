@@ -32,5 +32,19 @@ return {
       local value = values[i]
       table.insert(obj, value)
     end
+  end,
+
+  -- Convert array to hash table
+  -- @obj {table}
+  -- @returns {table}
+  convert_to_hash = function(obj)
+    local output = {}
+
+    for i=1, #obj do
+      local value = obj[i]
+      output[value] = true
+    end
+
+    return output
   end
 }

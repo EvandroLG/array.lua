@@ -1,15 +1,4 @@
-local utils = require('array.utils')
-
-local function convert_to_hash(obj)
-  local output = {}
-
-  for i=1, #obj do
-    local value = obj[i]
-    output[value] = true
-  end
-
-  return output
-end
+local utils = require('./utils')
 
 local array
 
@@ -401,7 +390,7 @@ array = {
     utils.raises_error(array, obj2, 'diff')
 
     local output = {}
-    local hash = convert_to_hash(obj2)
+    local hash = utils.convert_to_hash(obj2)
 
     for i=1, #obj1 do
       local value = obj1[i]
