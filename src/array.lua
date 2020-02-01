@@ -155,13 +155,13 @@ array = {
   map = function(obj, callback)
     utils.raises_error(array, obj, 'map')
 
-    local output = {}
-
-    for i=1, #obj do
-      table.insert(output, callback(obj[i], i))
+    local initial_value = {}
+    local reducer = function(accumulator, current, i)
+      table.insert(accumulator, callback(current, i))
+      return accumulator
     end
 
-    return output
+    return array.reduce(obj, reducer, initial_value)
   end,
 
   -- Create a new table containing all elements that pass truth test
@@ -172,12 +172,12 @@ array = {
     utils.raises_error(array, obj, 'filter')
 
     local initial_value = {}
-    local reducer = function(acc, current)
+    local reducer = function(accumulator, current)
       if callback(current) then
-        table.insert(acc, current)
+        table.insert(accumulator, current)
       end
 
-      return acc
+      return accumulator
     end
 
     return array.reduce(obj, reducer, initial_value)
