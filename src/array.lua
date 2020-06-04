@@ -3,7 +3,7 @@ local utils = require('./utils')
 local array
 
 array = {
-  __VERSION = '1.3.0',
+  __VERSION = '1.3.1',
   __DESCRIPTION = "A small library with useful methods to handle Lua's table when it's working like an Array",
   __LICENSE = [[
     The MIT License (MIT)
@@ -420,22 +420,19 @@ array = {
 
   -- Create a new table with the sub-table elements concatenated into it
   -- @param obj {table}
-  -- @param _memo {table}
   -- @return {table}
-  flat = function(obj, _memo)
-    local output = _memo or {}
-
-    for i=1, #obj do
-      local value = obj[i]
-
-      if utils.is_table(value) then
-        array.flat(value, output)
+  flat = function(obj)
+    return array.reduce(obj, function(acc, item)
+      if array.is_array(item) then
+        return array.concat(
+          acc,
+          array.flat(item)
+        )
       else
-        table.insert(output, value)
+        table.insert(acc, item)
+        return acc
       end
-    end
-
-    return output
+    end, {});
   end,
 
   -- Creates a table filling all the elements from a start index (default one) to an end index with a default value
