@@ -148,122 +148,109 @@ test('reduce should concatenate all items', function(a)
   a.equal(result, 'abcde')
 end)
 
-test('reduce_right should concatenate all items starting from right to left', function(a)
-  local result = array.reduce_right({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
-    return memo .. value
-  end)
-
-  a.equal(result, 'edcba')
-end)
-
-test('reduce_right should return 100', function(a)
-  local result = array.reduce_right({ 20, 30, 40 }, function(memo, value)
-    return memo + value
-  end, 10)
-
-  a.equal(result, 100)
-end)
-
 test('reduce_right', function(a)
-  local result = array.reduce_right({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
-    return memo .. value
-  end)
+  a.equal(
+    array.reduce_right({ 20, 30, 40 }, function(memo, value)
+      return memo + value
+    end),
+    90
+  )
 
-  a.equal(result, 'edcba')
+  a.equal(
+    array.reduce_right({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
+      return memo .. value
+    end),
+    'edcba'
+  )
 end)
 
-test('sum should return sum of the values in table', function(a)
-  local result = array.sum({10, 20, 30, 40, 50})
-  a.equal(result, 150)
+test('sum', function(a)
+  a.equal(
+    array.sum({10, 20, 30, 40, 50}),
+    150
+  )
 end)
 
-test('index_of should return correct position of value in the table', function(a)
-  a.equal(array.index_of({ 20, 30, 40, 50 }, 40), 3)
+test('index_of', function(a)
+  a.equal(
+    array.index_of({ 20, 30, 40, 50 }, 40),
+    3
+  )
+
+  a.equal(
+    array.index_of({ 20, 30, 40 }, 50),
+    -1
+  )
 end)
 
-test('index_of should return -1 when the value is not in the table', function(a)
-  a.equal(array.index_of({ 20, 30, 40 }, 50), -1)
+test('concat', function(a)
+  a.deep_equal(
+    array.concat({ 1, 2, 3 }, { 4, 5, 6 }),
+    { 1, 2, 3, 4, 5, 6 }
+  )
 end)
 
-test('concat should join the two array', function(a)
-  local result = array.concat({ 1, 2, 3 }, { 4, 5, 6 })
-
-  a.equal(#result, 6)
-  a.equal(result[4], 4)
+test('uniq', function(a)
+  a.deep_equal(
+    array.uniq({ 'a', 'b', 'a', 'b', 'c', 'd' }),
+    { 'a', 'b', 'c', 'd' }
+  )
 end)
 
-test('uniq should return every value once', function(a)
-  local result = array.uniq({ 'a', 'b', 'a', 'b', 'c', 'd' })
-
-  a.equal(#result, 4)
-  a.equal(result[1], 'a')
-  a.equal(result[2], 'b')
-  a.equal(result[3], 'c')
-  a.equal(result[4], 'd')
+test('without', function(a)
+  a.deep_equal(
+    array.without({ 10, 20, 30, 10, 4 }, { 10, 4 }),
+    { 20, 30 }
+  )
 end)
 
-test('without should return all values less the items from second array', function(a)
-  local result = array.without({ 10, 20, 30, 10, 4 }, { 10, 4 })
+test('some', function(a)
+  a.ok(
+    array.some({'a', 'b', 'c'}, function(element)
+      if (element == 'b') then return true end
+    end)
+  )
 
-  a.equal(#result, 2)
-  a.equal(result[1], 20)
-  a.equal(result[2], 30)
+  a.not_ok(
+    array.some({'a', 'b', 'c'}, function(element)
+      if (element == 'd') then return true end
+    end)
+  )
 end)
 
-test('some should return true when exist at least one match', function(a)
-  local result = array.some({'a', 'b', 'c'}, function(element)
-    if (element == 'b') then return true end
-  end)
+test('zip', function(a)
+  a.deep_equal(
+    array.zip({ 'a', 'b' }, { 'A', 'B', 'C' }),
+    {
+      { 'a', 'A' },
+      { 'b', 'B' }
+    }
+  )
 
-  a.ok(result)
+  a.deep_equal(
+    array.zip({ 'a', 'b' }, { 'A', 'B' }),
+    {
+      { 'a', 'A' },
+      { 'b', 'B' }
+    }
+  )
 end)
 
-test('some should return true when exist at least one match', function(a)
-  local result = array.some({'a', 'b', 'c'}, function(element)
-    if (element == 'd') then return true end
-  end)
+test('every', function(a)
+  a.not_ok(
+    array.every({ 10, 20, 30 }, function(value)
+      return value > 10
+    end)
+  )
 
-  a.not_ok(result)
+  a.ok(
+    array.every({ 10, 20, 30 }, function(value)
+      return value >= 10
+    end)
+  )
 end)
 
-test('zip should return a new table with the correct pairs', function(a)
-  local result = array.zip({ 'a', 'b' }, { 'A', 'B' })
-
-  a.equal(result[1][1], 'a')
-  a.equal(result[1][2], 'A')
-  a.equal(result[2][1], 'b')
-  a.equal(result[2][2], 'B')
-end)
-
-test('zip should not consider values without pairs', function(a)
-  local result = array.zip({ 'a', 'b' }, { 'A', 'B', 'C' })
-
-  a.equal(#result, 2)
-  a.equal(#result[1], 2)
-  a.equal(#result[2], 2)
-  a.equal(result[1][1], 'a')
-  a.equal(result[1][2], 'A')
-  a.equal(result[2][1], 'b')
-  a.equal(result[2][2], 'B')
-end)
-
-test('every should return true when all elements in the table pass the callback test', function(a)
-  local result = array.every({ 10, 20, 30 }, function(value)
-    return value >= 10
-  end)
-
-  a.ok(result)
-end)
-
-test('every should return false when at least a match fails', function(a)
-  local result = array.every({ 10, 20, 30 }, function(value)
-    return value > 10
-  end)
-
-  a.not_ok(result)
-end)
-
-test('shallow_copy should return a shallow copy of the array passed as parameter', function(a)
+test('shallow_copy', function(a)
   local obj = {
     { 'a' },
     { 'b' }
@@ -282,7 +269,7 @@ test('shallow_copy should return a shallow copy of the array passed as parameter
   a.equal(type(result[1]), 'table')
 end)
 
-test('deep_copy should return a deep copy of the array passed as parameter', function(a)
+test('deep_copy', function(a)
   local obj = {
     { 'a' },
     { 'b' }
@@ -301,100 +288,87 @@ test('deep_copy should return a deep copy of the array passed as parameter', fun
   a.equal(type(result[1]), 'table')
 end)
 
-test('diff should return a new table with the items which exist only in first table', function(a)
+test('diff', function(a)
   local result = array.diff(
     { 'a', 'b', 'g', 'z', 'h' },
     { 'a', 'c', 'd', 'e', 'f', 'h', 'x' }
   )
 
-  a.equal(#result, 3)
-  a.equal(result[1], 'b')
-  a.equal(result[2], 'g')
-  a.equal(result[3], 'z')
+  a.deep_equal(result, { 'b', 'g', 'z' })
 end)
 
-test('flat should return a new table that is an one-dimensional flatting of the table passed by parameter', function(a)
+test('flat', function(a)
   local obj = { 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' }
   local result = array.flat(obj)
 
   a.equal(#result, 10)
 end)
 
-test('fill should create a table with the size passed by parameter and fill every item using the value passed as argument', function(a)
-  local value = 1
-  local size = 3
-  local result = array.fill(value, size)
-
-  a.equal(#result, size)
-  a.equal(result[1], value)
-  a.equal(result[2], value)
-  a.equal(result[3], value)
-end)
-
-test('fill should create a table using the value passed by argument from start to end', function(a)
+test('fill', function(a)
   local value = 'a'
   local start = 3
   local finish = 4
   local result = array.fill(value, start, finish)
-
   a.equal(result[1], nil)
   a.equal(result[2], nil)
   a.equal(result[3], value)
   a.equal(result[4], value)
+
+  local size = 3
+  local result2 = array.fill(value, size)
+  a.equal(#result2, size)
+  a.equal(result2[1], value)
+  a.equal(result2[2], value)
+  a.equal(result2[3], value)
 end)
 
-test('remove should delete items that callback returns thruthy and should return a new table with the removed items', function(a)
+test('remove', function(a)
   local list = { 1, 2, 3, 4 }
   local result = array.remove(list, function(value)
     return math.fmod(value, 2) == 0
   end)
 
-  a.equal(#list, 2)
-  a.equal(list[1], 1)
-  a.equal(list[2], 3)
+  a.deep_equal(
+    list,
+    { 1, 3 }
+  )
 
-  a.equal(#result, 2)
-  a.equal(result[1], 2)
-  a.equal(result[2], 4)
+  a.deep_equal(
+    result,
+    { 2, 4 }
+  )
 end)
 
-test('counter should return a new in hash format', function(a)
-  local list = { 'a', 'b', 'a', 'a', 'c', 'b' }
-  local result = array.counter(list)
-
-  a.equal(result.a, 3)
-  a.equal(result.b, 2)
-  a.equal(result.c, 1)
+test('counter', function(a)
+  a.deep_equal(
+    array.counter({ 'a', 'b', 'a', 'a', 'c', 'b' }),
+    { a = 3, b = 2, c = 1 }
+  )
 end)
 
-test('intersect should return a new table with the values that exist in both tables', function(a)
+test('intersect', function(a)
   local first_list = { 'a', 'b', 'a', 'c', 'e', 'f', 'a' }
   local second_list = { 'b', 'a', 'd', 'a' }
   local result = array.intersect(first_list, second_list)
 
   a.equal(#result, 3)
-  --a.equal(result[1], 'b')
-  --a.equal(result[2], 'a')
-  --a.equal(result[3], 'a')
 end)
 
-test('from_pairs should return a table composed from key-value pairs', function(a)
-  local result = array.from_pairs({ {'a', 1}, {'b', 2} })
-
-  a.equal(result.a, 1)
-  a.equal(result.b, 2)
+test('from_pairs', function(a)
+  a.deep_equal(
+    array.from_pairs({ {'a', 1}, {'b', 2} }),
+    { a = 1, b = 2 }
+  )
 end)
 
-test('includes should determine whether value exists in table', function(a)
+test('includes', function(a)
   local list = { 'a', 'b', 'c' }
 
-  a.equal(
-    array.includes(list, 'c'),
-    true
+  a.ok(
+    array.includes(list, 'c')
   )
 
-  a.equal(
-    array.includes(list, 'd'),
-    false
+  a.not_ok(
+    array.includes(list, 'd')
   )
 end)
