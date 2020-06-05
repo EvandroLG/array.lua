@@ -533,6 +533,18 @@ array = {
     end
 
     return output
+  end,
+
+  each = function(obj, callback)
+    for i=1, #obj do
+      callback(obj[i], i)
+    end
+  end,
+
+  reverse_each = function(obj, callback)
+    for i = #arr, 1, -1 do
+      callback(arr[i], i)
+    end
   end
 }
 
