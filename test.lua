@@ -333,3 +333,30 @@ test('includes', function(a)
     array.includes(list, 'd')
   )
 end)
+
+test('each', function(a)
+  local list = { 'a', 'b', 'c' }
+  local values = {}
+  local keys = {}
+
+  array.each(list, function(v, k)
+    table.insert(values, v)
+    table.insert(keys, k)
+  end)
+
+  a.deep_equal(list, values)
+  a.deep_equal(keys, { 1, 2, 3 })
+end)
+
+test('reverse_each', function(a)
+  local values = {}
+  local keys = {}
+
+  array.reverse_each({ 'a', 'b', 'c' }, function(v, k)
+    table.insert(values, v)
+    table.insert(keys, k)
+  end)
+
+  a.deep_equal(values, { 'c', 'b', 'a' })
+  a.deep_equal(keys, { 3, 2, 1 })
+end)

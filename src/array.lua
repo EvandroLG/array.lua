@@ -542,8 +542,8 @@ array = {
   end,
 
   reverse_each = function(obj, callback)
-    for i = #arr, 1, -1 do
-      callback(arr[i], i)
+    for i = #obj, 1, -1 do
+      callback(obj[i], i)
     end
   end
 }
