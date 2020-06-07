@@ -9,95 +9,63 @@ test('meta infos', function(a)
   "A small library with useful methods to handle Lua's table when it's working like an Array")
 end)
 
-test('is_array should return false when object is not a table', function(a)
-  a.equal(array.is_array('lua'), false)
+test('is_array', function(a)
+  a.not_ok(array.is_array('lua'))
+  a.not_ok(array.is_array({ language='lua' }))
+  a.ok(array.is_array({}))
+  a.ok(array.is_array({ 'a', 'b', 'c', 'd' }))
 end)
 
-test('is_array should return false when the table is working like a dictionary', function(a)
-  a.equal(array.is_array({ language='lua' }), false)
+test('is_empty', function(a)
+  a.not_ok(array.is_empty({ 'a' }))
+  a.ok(array.is_empty({}))
 end)
 
-test('is_array should return true when table is empty', function(a)
-  a.equal(array.is_array({}), true)
-end)
-
-test('is_array should return true when table is working like an array', function(a)
-  a.equal(array.is_array({ 'a', 'b', 'c', 'd' }), true)
-end)
-
-test('is_empty should return false when table has at least one item', function(a)
-  a.equal(array.is_empty({ 'a' }), false)
-end)
-
-test('is_empty should return false when table does not have any item', function(a)
-  a.equal(array.is_empty({}), true)
-end)
-
-test('first should return first item from table', function(a)
+test('first', function(a)
   a.equal(array.first({ 'a', 'b', 'c', 'd' }), 'a')
 end)
 
-test('last should return last item from table', function(a)
+test('last', function(a)
   a.equal(array.last({ 'a', 'b', 'c', 'd' }), 'd')
 end)
 
-test('slice should return an empty table when it does not have any element', function(a)
+test('slice', function(a)
   a.equal(#array.slice({}, 1, 2), 0)
+
+  a.deep_equal(
+    array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2, 4),
+    { 'javascript', 'python', 'ruby' }
+  )
+
+  a.deep_equal(
+    array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2),
+    { 'javascript', 'python', 'ruby', 'c' }
+  )
 end)
 
-test('slice should return a table with values between start index and end index', function(a)
-  local result = array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2, 4)
-
-  a.equal(type(result), 'table')
-  a.equal(#result, 3)
-  a.equal(result[1], 'javascript')
-  a.equal(result[2], 'python')
-  a.equal(result[3], 'ruby')
-end)
-
-test('slice should return a table with every values from start index until last index', function(a)
-  local result = array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2)
-
-  a.equal(type(result), 'table')
-  a.equal(#result, 4)
-  a.equal(result[1], 'javascript')
-  a.equal(result[2], 'python')
-  a.equal(result[3], 'ruby')
-  a.equal(result[4], 'c')
-end)
-
-test('reverse should return an inverted table', function(a)
-  local result = array.reverse({ 'lua', 'javascript', 'python' })
-
-  a.equal(type(result), 'table')
-  a.equal(#result, 3)
-  a.equal(result[1], 'python')
-  a.equal(result[2], 'javascript')
-  a.equal(result[3], 'lua')
+test('reverse', function(a)
+  a.deep_equal(
+    array.reverse({ 'lua', 'javascript', 'python' }),
+    { 'python', 'javascript', 'lua' }
+  )
 end)
 
 test('map should return a table with 2, 4, 6 values', function(a)
-  local result = array.map({ 1, 2, 3 }, function(value)
-    return value * 2
-  end)
-
-  a.equal(type(result), 'table')
-  a.equal(#result, 3)
-  a.equal(result[1], 2)
-  a.equal(result[2], 4)
-  a.equal(result[3], 6)
+  a.deep_equal(
+    array.map({ 1, 2, 3 }, function(value)
+      return value * 2
+    end),
+    { 2, 4, 6 }
+  )
 end)
 
 test('filter should return a table with 10, 15, 20 values', function(a)
-  local result = array.filter({ 15, 10, 5, 3, 20 }, function(value)
-    return value >= 10
-  end)
-
-  a.equal(type(result), 'table')
-  a.equal(#result, 3)
-  a.equal(result[1], 15)
-  a.equal(result[2], 10)
-  a.equal(result[3], 20)
+  a.deep_equal(
+    array.filter({ 15, 10, 5, 3, 20 }, function(value)
+      return value >= 10
+    end),
+    { 15, 10, 20 }
+  )
 end)
 
 test('max should return the biggest value from a table', function(a)
@@ -117,35 +85,39 @@ test('min should return nil when table is empty', function(a)
 end)
 
 test('reduce should return 90', function(a)
-  local result = array.reduce({ 20, 30, 40 }, function(memo, value)
-    return memo + value
-  end)
-
-  a.equal(result, 90)
+  a.equal(
+    array.reduce({ 20, 30, 40 }, function(memo, value)
+      return memo + value
+    end),
+    90
+  )
 end)
 
 test('reduce should return 100', function(a)
-  local result = array.reduce({ 20, 30, 40 }, function(memo, value)
-    return memo + value
-  end, 10)
-
-  a.equal(result, 100)
+  a.equal(
+    array.reduce({ 20, 30, 40 }, function(memo, value)
+      return memo + value
+    end, 10), 
+  100)
 end)
 
 test('reduce should return first item', function(a)
-  local result = array.reduce({ 20 }, function(memo, value)
-    return memo + value
-  end)
+  local result = 
 
-  a.equal(result, 20)
+  a.equal(
+    array.reduce({ 20 }, function(memo, value)
+      return memo + value
+    end),
+  20)
 end)
 
 test('reduce should concatenate all items', function(a)
-  local result = array.reduce({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
-    return memo .. value
-  end)
-
-  a.equal(result, 'abcde')
+  a.equal(
+    array.reduce({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
+      return memo .. value
+    end),
+    'abcde'
+  )
 end)
 
 test('reduce_right', function(a)
@@ -256,17 +228,10 @@ test('shallow_copy', function(a)
     { 'b' }
   }
 
-  local result = array.shallow_copy(obj)
-
-  a.equal(#result, #obj)
-  a.equal(result[1][1], obj[1][1])
-  a.equal(result[2][1], obj[2][1])
-
-  obj[1][1] = 'c'
-  a.equal(result[1][1], obj[1][1])
-
-  obj[1] = 'c'
-  a.equal(type(result[1]), 'table')
+  a.deep_equal(
+    array.shallow_copy(obj),
+    obj
+  )
 end)
 
 test('deep_copy', function(a)
@@ -298,28 +263,22 @@ test('diff', function(a)
 end)
 
 test('flat', function(a)
-  local obj = { 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' }
-  local result = array.flat(obj)
-
-  a.equal(#result, 10)
+  a.deep_equal(
+    array.flat({ 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' }),
+    { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' }
+  )
 end)
 
 test('fill', function(a)
-  local value = 'a'
-  local start = 3
-  local finish = 4
-  local result = array.fill(value, start, finish)
-  a.equal(result[1], nil)
-  a.equal(result[2], nil)
+  local value = 'Lua'
+  local result = array.fill(value, 3, 4)
   a.equal(result[3], value)
   a.equal(result[4], value)
 
-  local size = 3
-  local result2 = array.fill(value, size)
-  a.equal(#result2, size)
-  a.equal(result2[1], value)
-  a.equal(result2[2], value)
-  a.equal(result2[3], value)
+  a.deep_equal(
+    array.fill(value, 3),
+    { value, value, value }
+  )
 end)
 
 test('remove', function(a)
@@ -349,9 +308,11 @@ end)
 test('intersect', function(a)
   local first_list = { 'a', 'b', 'a', 'c', 'e', 'f', 'a' }
   local second_list = { 'b', 'a', 'd', 'a' }
-  local result = array.intersect(first_list, second_list)
 
-  a.equal(#result, 3)
+  a.equal(
+    #array.intersect(first_list, second_list),
+    3
+  )
 end)
 
 test('from_pairs', function(a)
