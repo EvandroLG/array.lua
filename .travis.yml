@@ -12,11 +12,10 @@ before_install:
   - export PATH=$PATH:$PWD/lua_install/bin
 
 install:
-  - luarocks install luautf8
   - luarocks install simple_test
 
 script:
-  - lua ./test.lua
+  - make test
 
 notifications:
   email:
