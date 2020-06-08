@@ -1,2 +1,3 @@
 *.rock
+*.rockspec
 .luarocks_key

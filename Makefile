@@ -6,7 +6,7 @@ install_dependencies:
 	luarocks install simple_test
 
 test:
-	lua test.lua
+	LUA_PATH="./src/?.lua;./src/?/init.lua;./src/array/?.lua;;" lua test.lua
 
 rockspec:
 	bash $(task_folder)create_rockspec.sh $(version)

@@ -1,7 +1,5 @@
-package.path = "./src/?.lua;" .. package.path
-
-local array = require './src/array'
 local test = require 'simple_test'
+local array = require 'array'
 
 test('meta infos', function(a)
   a.equal(array.__VERSION, '1.3.1')
