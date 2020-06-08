@@ -99,3 +99,9 @@ Returns a new table with the values that exist in both tables
 
 * array.<code>from_pairs(object:table, object:table):table</code><br />
 Returns a table composed from key-value pairs
+
+* array.<code>each(object:table, callback:function):void</code><br />
+Executes `callback` once for each table element
+
+* array.<code>reverse_each(object:table, callback:function):void</code><br />
+Executes `callback` once for each table element in reverse order
