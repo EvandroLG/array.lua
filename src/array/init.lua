@@ -535,12 +535,20 @@ array = {
     return output
   end,
 
+  -- Executes callback once for each table element
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {void}
   each = function(obj, callback)
     for i=1, #obj do
       callback(obj[i], i)
     end
   end,
 
+  -- Executes callback once for each table element in reverse order
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {void}
   reverse_each = function(obj, callback)
     for i = #obj, 1, -1 do
       callback(obj[i], i)
