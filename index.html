@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>array</title>
+    <style>
+      :root {
+        --shadow: 0 0 0.5rem #9da5ab;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        overflow: hidden;
+        margin: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        color: #030303;
+      }
+
+      h1, h2, p {
+        margin: 0;
+        word-break: break-word;
+      }
+
+      code {
+        font-family: Consolas, Source Code Pro, Courier New;
+      }
+
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+
+      a {
+        color: #606060;
+        text-decoration: none;
+      }
+
+      .fork-me {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .menu {
+        overflow-y: auto;
+        flex-basis: 20%;
+        box-shadow: var(--shadow);
+        height: 100vh;
+        padding-top: 1rem;
+        padding-left: 1rem;
+      }
+
+      .menu > ul > li {
+        padding-bottom: 1rem;
+      }
+
+      main {
+        flex-basis: 80%;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+        padding-left: 2rem;
+        overflow-y: auto;
+        height: 100vh;
+      }
+
+      main h2 {
+        margin-bottom: 1rem;
+      }
+
+      main > div {
+        margin-bottom: 2rem;
+      }
+
+      @media (max-width: 480px)  {
+        .menu {
+          display: none;
+        }
+
+        main {
+          flex-basis: 100%;
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="https://github.com/EvandroLG/array.lua" class="fork-me">
+      <img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+    <div class="wrapper">
+      <div class="menu">
+        <h1>array.lua</h1>
+        <ul>
+            <li>
+              <a href="#concat">
+                array.concat
+              </a>
+            </li>
+            <li>
+              <a href="#counter">
+                array.counter
+              </a>
+            </li>
+            <li>
+              <a href="#deep_copy">
+                array.deep_copy
+              </a>
+            </li>
+            <li>
+              <a href="#diff">
+                array.diff
+              </a>
+            </li>
+            <li>
+              <a href="#each">
+                array.each
+              </a>
+            </li>
+            <li>
+              <a href="#every">
+                array.every
+              </a>
+            </li>
+            <li>
+              <a href="#fill">
+                array.fill
+              </a>
+            </li>
+            <li>
+              <a href="#filter">
+                array.filter
+              </a>
+            </li>
+            <li>
+              <a href="#first">
+                array.first
+              </a>
+            </li>
+            <li>
+              <a href="#flat">
+                array.flat
+              </a>
+            </li>
+            <li>
+              <a href="#from_pairs">
+                array.from_pairs
+              </a>
+            </li>
+            <li>
+              <a href="#includes">
+                array.includes
+              </a>
+            </li>
+            <li>
+              <a href="#index_of">
+                array.index_of
+              </a>
+            </li>
+            <li>
+              <a href="#intersect">
+                array.intersect
+              </a>
+            </li>
+            <li>
+              <a href="#is_array">
+                array.is_array
+              </a>
+            </li>
+            <li>
+              <a href="#is_empty">
+                array.is_empty
+              </a>
+            </li>
+            <li>
+              <a href="#last">
+                array.last
+              </a>
+            </li>
+            <li>
+              <a href="#map">
+                array.map
+              </a>
+            </li>
+            <li>
+              <a href="#max">
+                array.max
+              </a>
+            </li>
+            <li>
+              <a href="#min">
+                array.min
+              </a>
+            </li>
+            <li>
+              <a href="#reduce">
+                array.reduce
+              </a>
+            </li>
+            <li>
+              <a href="#reduce_right">
+                array.reduce_right
+              </a>
+            </li>
+            <li>
+              <a href="#remove">
+                array.remove
+              </a>
+            </li>
+            <li>
+              <a href="#reverse">
+                array.reverse
+              </a>
+            </li>
+            <li>
+              <a href="#reverse_each">
+                array.reverse_each
+              </a>
+            </li>
+            <li>
+              <a href="#shallow_copy">
+                array.shallow_copy
+              </a>
+            </li>
+            <li>
+              <a href="#slice">
+                array.slice
+              </a>
+            </li>
+            <li>
+              <a href="#some">
+                array.some
+              </a>
+            </li>
+            <li>
+              <a href="#sum">
+                array.sum
+              </a>
+            </li>
+            <li>
+              <a href="#uniq">
+                array.uniq
+              </a>
+            </li>
+            <li>
+              <a href="#without">
+                array.without
+              </a>
+            </li>
+            <li>
+              <a href="#zip">
+                array.zip
+              </a>
+            </li>
+        </ul>
+      </div>
+
+      <main>
+          <div id="concat">
+            <h2>
+              <code>array.concat(obj:table,obj2:table):table</code>
+            </h2>
+            <p>Return a new table joining all values from the two tables passed by parameter</p>
+          </div>
+          <div id="counter">
+            <h2>
+              <code>array.counter(obj:table):table</code>
+            </h2>
+            <p>and value represent the number of times the same item was found in the list</p>
+          </div>
+          <div id="deep_copy">
+            <h2>
+              <code>array.deep_copy(value:*):table</code>
+            </h2>
+            <p>Return a deep copy of the table passed as parameter</p>
+          </div>
+          <div id="diff">
+            <h2>
+              <code>array.diff(obj:table,obj2:table):table</code>
+            </h2>
+            <p>Return a new table with the items which exist only in the first table</p>
+          </div>
+          <div id="each">
+            <h2>
+              <code>array.each(obj:table,callback:function):void</code>
+            </h2>
+            <p>Executes callback once for each table element</p>
+          </div>
+          <div id="every">
+            <h2>
+              <code>array.every(obj:table,obj2:table):table</code>
+            </h2>
+            <p>Return a table of the two supplied by pairing up equally-positioned elements from both tables</p>
+          </div>
+          <div id="fill">
+            <h2>
+              <code>array.fill(value:*,start_or_finish:number,finish:number):table</code>
+            </h2>
+            <p>Creates a table filling all the elements from a start index (default one) to an end index with a default value</p>
+          </div>
+          <div id="filter">
+            <h2>
+              <code>array.filter(obj:table,callback:function):*</code>
+            </h2>
+            <p>Create a new table containing all elements that pass truth test</p>
+          </div>
+          <div id="first">
+            <h2>
+              <code>array.first(obj:table):*</code>
+            </h2>
+            <p>Return first element from the table</p>
+          </div>
+          <div id="flat">
+            <h2>
+              <code>array.flat(obj:table):table</code>
+            </h2>
+            <p>Create a new table with the sub-table elements concatenated into it</p>
+          </div>
+          <div id="from_pairs">
+            <h2>
+              <code>array.from_pairs(obj1:table,obj2:table):table</code>
+            </h2>
+            <p>Return a table composed from key-value pairs</p>
+          </div>
+          <div id="includes">
+            <h2>
+              <code>array.includes(obj:table,value:*):boolean</code>
+            </h2>
+            <p>Return true whether table includes the values, otherwise it returns false</p>
+          </div>
+          <div id="index_of">
+            <h2>
+              <code>array.index_of(obj:table,value:*):number</code>
+            </h2>
+            <p>Return the index at which value can be found or -1 in case value is not present</p>
+          </div>
+          <div id="intersect">
+            <h2>
+              <code>array.intersect(obj1:table,obj2:table):table</code>
+            </h2>
+            <p>Return a new table with the values that exist in both tables</p>
+          </div>
+          <div id="is_array">
+            <h2>
+              <code>array.is_array(obj:table):boolean</code>
+            </h2>
+            <p>Verify if table object works as an array</p>
+          </div>
+          <div id="is_empty">
+            <h2>
+              <code>array.is_empty(obj:table):boolean</code>
+            </h2>
+            <p>Check if parameter is an empty table</p>
+          </div>
+          <div id="last">
+            <h2>
+              <code>array.last(obj:table):*</code>
+            </h2>
+            <p>Return last element from the table</p>
+          </div>
+          <div id="map">
+            <h2>
+              <code>array.map(obj:table,callback:function):*</code>
+            </h2>
+            <p>Create a new table of values by mapping each value in table through a transformation function</p>
+          </div>
+          <div id="max">
+            <h2>
+              <code>array.max(obj:table):*</code>
+            </h2>
+            <p>Return maximum value from the table</p>
+          </div>
+          <div id="min">
+            <h2>
+              <code>array.min(obj:table):*</code>
+            </h2>
+            <p>Return minimum value from the table</p>
+          </div>
+          <div id="reduce">
+            <h2>
+              <code>array.reduce(obj:table,callback:function,memo:table):*</code>
+            </h2>
+            <p>Applies a function against an accumulator and each value of the table to reduce it to a single value</p>
+          </div>
+          <div id="reduce_right">
+            <h2>
+              <code>array.reduce_right(obj:table,callback:function,memo:table):*</code>
+            </h2>
+            <p>This function is like reduce except that it interates over table&#x27;s elements from right to left</p>
+          </div>
+          <div id="remove">
+            <h2>
+              <code>array.remove(obj:table,callback:function):table</code>
+            </h2>
+            <p>and return a new table with the removed items</p>
+          </div>
+          <div id="reverse">
+            <h2>
+              <code>array.reverse(obj:table):table</code>
+            </h2>
+            <p>Create a new table with reverse values</p>
+          </div>
+          <div id="reverse_each">
+            <h2>
+              <code>array.reverse_each(obj:table,callback:function):void</code>
+            </h2>
+            <p>Executes callback once for each table element in reverse order</p>
+          </div>
+          <div id="shallow_copy">
+            <h2>
+              <code>array.shallow_copy(obj:table):table</code>
+            </h2>
+            <p>return a shallow copy of the table passed as parameter</p>
+          </div>
+          <div id="slice">
+            <h2>
+              <code>array.slice(obj:table,start:number,finish:number):boolean</code>
+            </h2>
+            <p>Return a shallow copy of a portion of a table into a new table</p>
+          </div>
+          <div id="some">
+            <h2>
+              <code>array.some(obj:table,callback:function):boolean</code>
+            </h2>
+            <p>Tests if at least one element in the table passes the test implemented by the callback</p>
+          </div>
+          <div id="sum">
+            <h2>
+              <code>array.sum(obj:table,callback:function):number</code>
+            </h2>
+            <p>Return the sum of the values in table</p>
+          </div>
+          <div id="uniq">
+            <h2>
+              <code>array.uniq(obj:table):table</code>
+            </h2>
+            <p>Create a new table, removing duplicates values</p>
+          </div>
+          <div id="without">
+            <h2>
+              <code>array.without(obj:table,values:table):table</code>
+            </h2>
+            <p>Return a copy of the table with all instances of the values removed</p>
+          </div>
+          <div id="zip">
+            <h2>
+              <code>array.zip(obj:table,obj2:table):table</code>
+            </h2>
+            <p>Return a table of the two supplied by pairing up equally-positioned elements from both tables</p>
+          </div>
+      </main>
+    </div>
+  </body>
+</html>
