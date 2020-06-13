@@ -7,6 +7,7 @@
     <style>
       :root {
         --shadow: 0 0 0.5rem #9da5ab;
+        --colorDefault: #030303;
       }
 
       * {
@@ -17,7 +18,7 @@
         overflow: hidden;
         margin: 0;
         font-family: Helvetica, Arial, sans-serif;
-        color: #030303;
+        color: var(--colorDefault);
       }
 
       h1, h2, p {
@@ -37,6 +38,10 @@
       a {
         color: #606060;
         text-decoration: none;
+      }
+
+      a:hover {
+        color: var(--colorDefault);
       }
 
       .fork-me {
