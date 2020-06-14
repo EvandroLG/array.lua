@@ -35,7 +35,13 @@
         list-style: none;
       }
 
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
       a {
+        font-size: 1rem;
         color: #606060;
         text-decoration: none;
       }
@@ -60,8 +66,7 @@
         flex-basis: 20%;
         box-shadow: var(--shadow);
         height: 100vh;
-        padding-top: 1rem;
-        padding-left: 1rem;
+        padding: 1rem 1rem 0 1rem;
       }
 
       .menu > ul > li {
@@ -70,14 +75,18 @@
 
       main {
         flex-basis: 80%;
-        padding-bottom: 2rem;
-        padding-top: 2rem;
-        padding-left: 2rem;
+        padding: 2rem;
         overflow-y: auto;
         height: 100vh;
+        font-size: 1rem;
+      }
+
+      main h1 {
+        display: none;
       }
 
       main h2 {
+        font-size: 1.2rem;
         margin-bottom: 1rem;
       }
 
@@ -93,6 +102,11 @@
         main {
           flex-basis: 100%;
           padding: 1rem;
+        }
+
+        main h1 {
+          display: block;
+          margin: 2rem 0;
         }
       }
     </style>
@@ -269,6 +283,8 @@
       </div>
 
       <main>
+          <h1>array.lua</h1>
+
           <div id="concat">
             <h2>
               <code>array.concat(obj:table,obj2:table):table</code>
