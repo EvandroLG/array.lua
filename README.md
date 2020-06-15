@@ -1,5 +1,5 @@
 # array.lua
-A small library with useful methods to handle Lua's table when it's working like an Array.
+A small library with useful methods to handle Lua's table when it's working like an Array.<br>
 For docs, see: http://evandrolg.github.io/array.lua/
 
 [![Build
