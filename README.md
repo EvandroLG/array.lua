@@ -12,4 +12,4 @@ $ luarocks install array
 ```
 
 ## License
-[MIT](https://github.com/EvandroLG/audio.lua/tree/master/LICENSE)
+[MIT](https://github.com/EvandroLG/array.lua/tree/master/LICENSE)
