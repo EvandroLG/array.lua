@@ -348,10 +348,10 @@ array = {
     return output
   end,
 
-  -- Return a table of the two supplied by pairing up equally-positioned elements from both tables
+  -- Run a predicate on each value. If the predicate evaluates to any false value, this function will immediately return false; otherwise, it returns true.
   -- @param obj {table}
-  -- @param obj2 {table}
-  -- @return {table}
+  -- @param predicate {callback}
+  -- @return {boolean}
   every = function(obj, callback)
     utils.raises_error(array, obj, 'every')
 
