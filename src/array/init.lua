@@ -350,7 +350,7 @@ array = {
 
   -- Run a predicate on each value. If the predicate evaluates to any false value, this function will immediately return false; otherwise, it returns true.
   -- @param obj {table}
-  -- @param predicate {callback}
+  -- @param callback {function}
   -- @return {boolean}
   every = function(obj, callback)
     utils.raises_error(array, obj, 'every')
