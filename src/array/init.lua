@@ -555,6 +555,10 @@ array = {
     end
   end,
 
+  -- Returns a new table composed by keys created from the results of running each element through `callback`
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {table}
   group_by = function(obj, callback)
     utils.raises_error(array, obj, 'group_by')
 
