@@ -553,6 +553,23 @@ array = {
     for i = #obj, 1, -1 do
       callback(obj[i], i)
     end
+  end,
+
+  group_by = function(obj, callback)
+    utils.raises_error(array, obj, 'group_by')
+
+    function reducer(accumulator, current)
+      local result = callback(current)
+      if not accumulator[result] then
+        accumulator[result] = {}
+      end
+
+      table.insert(accumulator[result], current)
+
+      return accumulator
+    end
+
+    return array.reduce(obj, reducer, {})
   end
 }
 

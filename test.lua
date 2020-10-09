@@ -358,3 +358,23 @@ test('reverse_each', function(a)
   a.deep_equal(values, { 'c', 'b', 'a' })
   a.deep_equal(keys, { 3, 2, 1 })
 end)
+
+test('group_by', function(a)
+  a.deep_equal(
+    array.group_by({ 6.1, 4.1, 6.3, 4.4, 5.1 }, function(item) return math.floor(item) end),
+    {
+      [4] = { 4.1, 4.4 },
+      [6] = { 6.1, 6.3 },
+      [5] = { 5.1 }
+    }
+  )
+
+  a.deep_equal(
+    array.group_by({ 'one', 'two', 'three', 'four' }, function(item) return #item end),
+    {
+      [3] = { 'one', 'two' },
+      [5] = { 'three' },
+      [4] = { 'four' }
+    }
+  )
+end)
