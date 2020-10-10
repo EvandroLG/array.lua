@@ -378,3 +378,13 @@ test('group_by', function(a)
     }
   )
 end)
+
+test('random', function(a)
+  local list = { 'a', 'b', 'c' }
+
+  a.ok(
+    array.includes(list, array.random(list))
+  )
+
+  a.equal(array.random({ 'a' }), 'a')
+end)

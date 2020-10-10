@@ -574,6 +574,14 @@ array = {
     end
 
     return array.reduce(obj, reducer, {})
+  end,
+
+  -- Returns a value from a random key of the given array
+  -- @param obj {table}
+  -- @return {*}
+  random = function(obj)
+    utils.raises_error(array, obj, 'random')
+    return obj[math.random(#obj)]
   end
 }
 
