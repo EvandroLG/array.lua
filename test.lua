@@ -48,7 +48,7 @@ test('reverse', function(a)
   )
 end)
 
-test('map should return a table with 2, 4, 6 values', function(a)
+test('map', function(a)
   a.deep_equal(
     array.map({ 1, 2, 3 }, function(value)
       return value * 2
@@ -57,7 +57,7 @@ test('map should return a table with 2, 4, 6 values', function(a)
   )
 end)
 
-test('filter should return a table with 10, 15, 20 values', function(a)
+test('filter', function(a)
   a.deep_equal(
     array.filter({ 15, 10, 5, 3, 20 }, function(value)
       return value >= 10
@@ -66,50 +66,24 @@ test('filter should return a table with 10, 15, 20 values', function(a)
   )
 end)
 
-test('max should return the biggest value from a table', function(a)
+test('max', function(a)
   a.equal(array.max({ 20, 22, 1, 3, 30, 42 }), 42)
-end)
-
-test('max should return nil when table is empty', function(a)
   a.equal(array.max({}), nil)
 end)
 
-test('min should return the smallest value from a table', function(a)
+test('min', function(a)
   a.equal(array.min({ 20, 22, 1, 3, 30, 42 }), 1)
-end)
-
-test('min should return nil when table is empty', function(a)
   a.equal(array.min({}), nil)
 end)
 
-test('reduce should return 90', function(a)
+test('reduce', function(a)
   a.equal(
     array.reduce({ 20, 30, 40 }, function(memo, value)
       return memo + value
     end),
     90
   )
-end)
 
-test('reduce should return 100', function(a)
-  a.equal(
-    array.reduce({ 20, 30, 40 }, function(memo, value)
-      return memo + value
-    end, 10), 
-  100)
-end)
-
-test('reduce should return first item', function(a)
-  local result = 
-
-  a.equal(
-    array.reduce({ 20 }, function(memo, value)
-      return memo + value
-    end),
-  20)
-end)
-
-test('reduce should concatenate all items', function(a)
   a.equal(
     array.reduce({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
       return memo .. value
