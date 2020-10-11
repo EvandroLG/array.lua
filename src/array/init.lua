@@ -40,14 +40,14 @@ array = {
     return true
   end,
 
-  -- Check if parameter is an empty table
+  -- Checks if parameter is an empty table
   -- @param obj {table}
   -- @return {boolean}
   is_empty = function(obj)
     return array.is_array(obj) and #obj == 0
   end,
 
-  -- Return a shallow copy of a portion of a table into a new table
+  -- Returns a shallow copy of a portion of a table into a new table
   -- @param obj {table}
   -- @param start {number} start value
   -- @param finish {number} end value
@@ -55,19 +55,17 @@ array = {
   slice = function(obj, start, finish)
     utils.raises_error(array, obj, 'slice')
 
-    if array.is_empty(obj) then return {} end
-
-    local _start = start or 1
+    if array.is_empty(obj) or start == finish then return {} end
 
     local output = {}
-    for i=_start, finish or #obj do
+    for i = (start or 1), (finish or #obj) do
       table.insert(output, obj[i])
     end
 
     return output
   end,
 
-  -- Return the index at which value can be found or -1 in case value is not present
+  -- Returns the index at which value can be found or -1 in case value is not present
   -- @param obj {table}
   -- @param value {*}
   -- @return {number}
