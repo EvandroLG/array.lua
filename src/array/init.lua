@@ -254,22 +254,17 @@ array = {
     end)
   end,
 
-  -- Return a new table joining all values from the two tables passed by parameter
-  -- @param obj {table}
-  -- @param obj2 {table}
+  -- Return a new table joining all values from N tables passed by parameter
+  -- @param arg {...}
   -- @return {table}
-  concat = function(obj, obj2)
-    utils.raises_error(array, obj, 'concat')
-    utils.raises_error(array, obj2, 'concat')
-
+  concat = function(...)
+    local arg = {...}
     local output = {}
 
-    for i=1, #obj do
-      table.insert(output, obj[i])
-    end
-
-    for i=1, #obj2 do
-      table.insert(output, obj2[i])
+    for i, list in ipairs(arg) do
+      for j=1, #list do
+        table.insert(output, list[j])
+      end
     end
 
     return output
@@ -582,7 +577,7 @@ array = {
   random = function(obj)
     utils.raises_error(array, obj, 'random')
     return obj[math.random(#obj)]
-  end
+  end,
 }
 
 return array
