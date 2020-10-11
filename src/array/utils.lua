@@ -46,5 +46,11 @@ return {
     end
 
     return output
+  end,
+
+  print_items = function(obj)
+    for i=1, #obj do
+      print(obj[i])
+    end
   end
 }
