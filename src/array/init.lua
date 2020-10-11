@@ -578,6 +578,35 @@ array = {
     utils.raises_error(array, obj, 'random')
     return obj[math.random(#obj)]
   end,
+
+  permutation = function(obj)
+    if #obj == 1 then
+      return { obj }
+    end
+
+    local output = {}
+    local partialList = array.permutation(array.slice(obj, 2))
+    local first = { obj[1] }
+
+    for i=1, #partialList do
+      local partial = partialList[i]
+
+      for j=1, #partial+1 do
+        local merged = array.concat(
+          array.slice(partial, 1, j),
+          first,
+          array.slice(partial, j)
+        )
+
+        table.insert(
+          output,
+          merged
+        )
+      end
+    end
+
+    return output
+  end,
 }
 
 return array
