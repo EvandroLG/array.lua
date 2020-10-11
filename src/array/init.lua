@@ -577,17 +577,20 @@ array = {
     return obj[math.random(#obj)]
   end,
 
+  -- Creates a new table returning all permutations of length of the elements of the given table
+  -- @param obj {table}
+  -- @return {table}
   permutation = function(obj)
     if #obj == 1 then
       return { obj }
     end
 
     local output = {}
-    local partialList = array.permutation(array.slice(obj, 2))
+    local partial_list = array.permutation(array.slice(obj, 2))
     local first = { obj[1] }
 
-    for i=1, #partialList do
-      local partial = partialList[i]
+    for i=1, #partial_list do
+      local partial = partial_list[i]
 
       for j=1, #partial+1 do
         local merged = array.concat(

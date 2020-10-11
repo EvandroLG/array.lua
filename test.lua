@@ -367,3 +367,13 @@ test('random', function(a)
 
   a.equal(array.random({ 'a' }), 'a')
 end)
+
+test('permutation', function(a)
+  a.deep_equal(
+    array.permutation({ 'lua', 'javascript' }),
+    {
+      { 'lua', 'javascript' },
+      { 'javascript', 'lua' },
+    }
+  )
+end)
