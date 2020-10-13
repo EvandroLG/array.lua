@@ -31,7 +31,7 @@ test('slice', function(a)
   a.equal(#array.slice({}, 1, 2), 0)
 
   a.deep_equal(
-    array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2, 4),
+    array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2, 5),
     { 'javascript', 'python', 'ruby' }
   )
 
@@ -131,6 +131,11 @@ test('concat', function(a)
   a.deep_equal(
     array.concat({ 1, 2, 3 }, { 4, 5, 6 }),
     { 1, 2, 3, 4, 5, 6 }
+  )
+
+  a.deep_equal(
+    array.concat({ 'a', 'b', 'c' }, { 'd', 'e' }, { 'f', 'g' }),
+    { 'a', 'b', 'c', 'd', 'e', 'f', 'g' }
   )
 
   a.deep_equal(
@@ -374,6 +379,18 @@ test('permutation', function(a)
     {
       { 'lua', 'javascript' },
       { 'javascript', 'lua' },
+    }
+  )
+
+  a.deep_equal(
+    array.permutation({ 'lua', 'javascript', 'ruby' }),
+    {
+      { 'lua', 'javascript', 'ruby' },
+      { 'javascript', 'lua', 'ruby' },
+      { 'javascript', 'ruby', 'lua' },
+      { 'lua', 'ruby', 'javascript' },
+      { 'ruby', 'lua', 'javascript' },
+      { 'ruby', 'javascript', 'lua' },
     }
   )
 end)
