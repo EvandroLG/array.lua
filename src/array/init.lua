@@ -56,9 +56,10 @@ array = {
     utils.raises_error(array, obj, 'slice')
 
     if array.is_empty(obj) or start == finish then return {} end
+    local _finish = finish or (#obj + 1)
 
     local output = {}
-    for i = (start or 1), (finish or #obj) do
+    for i = (start or 1), (_finish - 1) do
       table.insert(output, obj[i])
     end
 
@@ -581,33 +582,28 @@ array = {
   -- @param obj {table}
   -- @return {table}
   permutation = function(obj)
+    local output = {}
+
     if #obj == 1 then
       return { obj }
     end
 
-    local output = {}
-    local partial_list = array.permutation(array.slice(obj, 2))
-    local first = { obj[1] }
+    local partial_permutations = array.permutation(array.slice(obj, 2))
+    local first = obj[1]
 
-    for i=1, #partial_list do
-      local partial = partial_list[i]
+    for i=1, #partial_permutations do
+      local partial = partial_permutations[i]
 
       for j=1, #partial+1 do
-        local merged = array.concat(
-          array.slice(partial, 1, j),
-          first,
-          array.slice(partial, j)
-        )
+        local permutation_front = array.slice(partial, 1, j)
+        local permutation_after = array.slice(partial, j)
 
-        table.insert(
-          output,
-          merged
-        )
+        table.insert(output, array.concat(permutation_front, { first }, permutation_after))
       end
     end
 
     return output
-  end,
+  end
 }
 
 return array
