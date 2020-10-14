@@ -178,6 +178,11 @@
               </a>
             </li>
             <li>
+              <a href="#group_by">
+                array.group_by
+              </a>
+            </li>
+            <li>
               <a href="#includes">
                 array.includes
               </a>
@@ -220,6 +225,16 @@
             <li>
               <a href="#min">
                 array.min
+              </a>
+            </li>
+            <li>
+              <a href="#permutation">
+                array.permutation
+              </a>
+            </li>
+            <li>
+              <a href="#random">
+                array.random
               </a>
             </li>
             <li>
@@ -354,6 +369,12 @@
             </h2>
             <p>Return a table composed from key-value pairs</p>
           </div>
+          <div id="group_by">
+            <h2>
+              <code>array.group_by(obj:table,callback:function):table</code>
+            </h2>
+            <p>Returns a new table composed by keys created from the results of running each element through `callback`</p>
+          </div>
           <div id="includes">
             <h2>
               <code>array.includes(obj:table,value:*):boolean</code>
@@ -407,6 +428,18 @@
               <code>array.min(obj:table):*</code>
             </h2>
             <p>Return minimum value from the table</p>
+          </div>
+          <div id="permutation">
+            <h2>
+              <code>array.permutation(obj:table):table</code>
+            </h2>
+            <p>Creates a new table returning all permutations of the length of the elements of the given table</p>
+          </div>
+          <div id="random">
+            <h2>
+              <code>array.random(obj:table):*</code>
+            </h2>
+            <p>Returns a value from a random key of the given array</p>
           </div>
           <div id="reduce">
             <h2>
