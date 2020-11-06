@@ -603,6 +603,26 @@ array = {
     end
 
     return output
+  end,
+
+  -- Returns a new array-like table with elements splitted into groups of length of `size`
+  -- @param obj {table}
+  -- @param size {number}
+  -- @return {table}
+  chunk = function(obj, size)
+    local output = {}
+
+    for _, v in pairs(obj) do
+      local last = output[#output]
+
+      if utils.is_nil(last) or #last == size then
+        table.insert(output, { v })
+      else
+        table.insert(last, v)
+      end
+    end
+
+    return output
   end
 }
 

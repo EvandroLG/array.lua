@@ -394,3 +394,14 @@ test('permutation', function(a)
     }
   )
 end)
+
+test('chunk', function(a)
+  a.deep_equal(
+    array.chunk({ 'a', 'b', 'c', 'd', 'e', 'f', 'g' }, 3),
+    {
+      { 'a', 'b', 'c' },
+      { 'd', 'e', 'f' },
+      { 'g' },
+    }
+  )
+end)

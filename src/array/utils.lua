@@ -48,9 +48,19 @@ return {
     return output
   end,
 
+  -- Loop through table and print all values
+  -- @obj {table}
+  -- @returns {nil}
   print_items = function(obj)
     for i=1, #obj do
       print(obj[i])
     end
+  end,
+
+  -- Checks wether value is nil
+  -- @obj {any}
+  -- @returns {boolean}
+  is_nil = function(value)
+    return value == nil
   end
 }
