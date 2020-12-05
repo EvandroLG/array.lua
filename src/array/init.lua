@@ -59,6 +59,13 @@ array = {
 
     local output = {}
     local _finish = #obj
+    local _start = 1
+
+    if start >= 0 then
+      _start = start
+    elseif utils.is_nil(finish) and start < 0 then
+      _start = #obj + start + 1
+    end
 
     if (finish and finish >= 0) then
       _finish = finish - 1
@@ -66,7 +73,7 @@ array = {
       _finish = #obj + finish
     end
 
-    for i = (start or 1), _finish do
+    for i = _start, _finish do
       table.insert(output, obj[i])
     end
 

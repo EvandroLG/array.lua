@@ -40,10 +40,10 @@ test('slice', function(a)
     { 'javascript', 'python', 'ruby', 'c' }
   )
 
-  --a.deep_equal(
-    --array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, -2),
-    --{ 'ruby', 'c' }
-  --)
+  a.deep_equal(
+    array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, -2),
+    { 'ruby', 'c' }
+  )
 
   a.deep_equal(
     array.slice({ 'lua', 'javascript', 'python', 'ruby', 'c' }, 2, -2),
