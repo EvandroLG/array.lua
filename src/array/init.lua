@@ -3,7 +3,7 @@ local utils = require('array.utils')
 local array
 
 array = {
-  __VERSION = '1.3.3',
+  __VERSION = '1.3.4',
   __DESCRIPTION = "A small library with useful methods to handle Lua's table when it's working like an Array",
   __LICENSE = [[
     The MIT License (MIT)
@@ -56,10 +56,17 @@ array = {
     utils.raises_error(array, obj, 'slice')
 
     if array.is_empty(obj) or start == finish then return {} end
-    local _finish = finish or (#obj + 1)
 
     local output = {}
-    for i = (start or 1), (_finish - 1) do
+    local _finish = #obj
+
+    if (finish and finish >= 0) then
+      _finish = finish - 1
+    elseif finish and finish < 0 then
+      _finish = #obj + finish
+    end
+
+    for i = (start or 1), _finish do
       table.insert(output, obj[i])
     end
 
