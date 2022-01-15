@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>array.lua</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/styles/default.min.css">
     <style>
       :root {
         --shadow: 0 0 0.5rem #9da5ab;
@@ -77,8 +78,9 @@
       }
 
       main {
-        flex-basis: 80%;
+        flex-basis: 100%;
         padding: 2rem;
+        padding-right: 0;
         overflow-y: auto;
         height: 100vh;
         font-size: 1rem;
@@ -313,156 +315,317 @@
               <code>array.chunk(obj:table,size:number):table</code>
             </h2>
             <p>Returns a new array-like table with elements splitted into groups of length of `size`</p>
+            <pre>
+              <code class="lua">array.chunk({ 'a', 'b', 'c', 'd', 'e', 'f', 'g' }, 3)
+-- { { 'a', 'b', 'c' }, { 'd', 'e', 'f' }, { 'g' } }</code>
+            </pre>
           </div>
           <div id="concat">
             <h2>
               <code>array.concat(obj:table,obj2:table):table</code>
             </h2>
             <p>Return a new table joining all values from the two tables passed by parameter</p>
+            <pre>
+              <code class="lua">array.concat({ 1, 2, 3 }, { 4, 5, 6 })
+-- { 1, 2, 3, 4, 5, 6 }</code>
+            </pre>
           </div>
           <div id="counter">
             <h2>
               <code>array.counter(obj:table):table</code>
             </h2>
             <p>and value represent the number of times the same item was found in the list</p>
+            <pre>
+              <code class="lua">array.counter({ 'a', 'b', 'a', 'a', 'c', 'b' })
+-- { a = 3, b = 2, c = 1 }</code>
+            </pre>
           </div>
           <div id="deep_copy">
             <h2>
               <code>array.deep_copy(value:*):table</code>
             </h2>
             <p>Return a deep copy of the table passed as parameter</p>
+            <pre>
+              <code class="lua">local object = { { a = 1 }, { b = 2 } }
+local deep = array.deep_copy(object)
+
+print(deep[1] == object[1])
+-- true</code>
+            </pre>
           </div>
           <div id="diff">
             <h2>
               <code>array.diff(obj:table,obj2:table):table</code>
             </h2>
             <p>Return a new table with the items which exist only in the first table</p>
+            <pre>
+              <code class="lua">local diff = array.counter({ 'a', 'b', 'c'}, { 'a', 'c', 'e' })
+
+print(diff)
+-- { 'b', 'e' }</code>
+            </pre>
           </div>
           <div id="each">
             <h2>
               <code>array.each(obj:table,callback:function):void</code>
             </h2>
             <p>Executes callback once for each table element</p>
+            <pre>
+              <code class="lua">array.each({ 'a' = 1, 'b' = 2 }, function(value, key)
+  print(key)
+  print(value)
+end)</code>
+            </pre>
           </div>
           <div id="every">
             <h2>
               <code>array.every(obj:table,obj2:table):table</code>
             </h2>
             <p>Run a predicate on each value. If the predicate evaluates to any false value, this function will immediately return false; otherwise, it returns true.</p>
+            <pre>
+              <code class="lua">array.every({ 10, 20 }, function(value)
+  return value >= 10
+end)
+
+-- true</code>
+            </pre>
           </div>
           <div id="fill">
             <h2>
               <code>array.fill(value:*,start_or_finish:number,finish:number):table</code>
             </h2>
             <p>Creates a table filling all the elements from a start index (default one) to an end index with a default value</p>
+            <pre>
+              <code class="lua">array.fill('a', 3)
+-- { 'a', 'a', 'a' }</code>
+            </pre>
           </div>
           <div id="filter">
             <h2>
               <code>array.filter(obj:table,callback:function):*</code>
             </h2>
             <p>Create a new table containing all elements that pass truth test</p>
+            <pre>
+              <code class="lua">local result = array.filter({ 15, 10, 5, 3, 20 }, function(value)
+  return value >= 10
+end
+
+print(result)
+-- { 15, 10, 20 }
+</code>
+            </pre>
           </div>
           <div id="first">
             <h2>
               <code>array.first(obj:table):*</code>
             </h2>
             <p>Return first element from the table</p>
+            <pre>
+              <code class="lua">array.first({ 'a', 'b', 'c', 'd' })
+-- 'a'
+</code>
+            </pre>
           </div>
           <div id="flat">
             <h2>
               <code>array.flat(obj:table):table</code>
             </h2>
             <p>Create a new table with the sub-table elements concatenated into it</p>
+            <pre>
+              <code class="lua">local result = array.flat({ 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' })
+
+print(result)
+-- { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' }
+</code>
+            </pre>
           </div>
           <div id="from_pairs">
             <h2>
               <code>array.from_pairs(obj1:table,obj2:table):table</code>
             </h2>
             <p>Return a table composed from key-value pairs</p>
+            <pre>
+              <code class="lua">local result = array.from_pairs({ {'a', 1}, {'b', 2} })
+
+print(result)
+-- { a = 1, b = 2 }
+</code>
+            </pre>
           </div>
           <div id="group_by">
             <h2>
               <code>array.group_by(obj:table,callback:function):table</code>
             </h2>
             <p>Returns a new table composed by keys created from the results of running each element through `callback`</p>
+            <pre>
+              <code class="lua">local result = array.group_by({ 6.1, 4.1, 6.3, 4.4, 5.1 }, function(item)
+  return math.floor(item)
+end)
+
+print(result)
+-- { [4] = { 4.1, 4.4 }, [6] = { 6.1, 6.3 }, [5] = { 5.1 } }
+</code>
+            </pre>
           </div>
           <div id="includes">
             <h2>
               <code>array.includes(obj:table,value:*):boolean</code>
             </h2>
             <p>Return true whether table includes the values, otherwise it returns false</p>
+            <pre>
+              <code class="lua">array.includes({ 'a', 'b', 'c' }, 'a')
+-- true
+</code>
+            </pre>
           </div>
           <div id="index_of">
             <h2>
               <code>array.index_of(obj:table,value:*):number</code>
             </h2>
             <p>Return the index at which value can be found or -1 in case value is not present</p>
+            <pre>
+              <code class="lua">array.index_of({ 'a', 'b', 'c' }, 'b')
+-- 2
+</code>
+            </pre>
           </div>
           <div id="intersect">
             <h2>
               <code>array.intersect(obj1:table,obj2:table):table</code>
             </h2>
             <p>Return a new table with the values that exist in both tables</p>
+            <pre>
+              <code class="lua">array.intersect({ 1, 2, 3 }, { 2, 3 })
+-- { 2, 3 }
+</code>
+            </pre>
           </div>
           <div id="is_array">
             <h2>
               <code>array.is_array(obj:table):boolean</code>
             </h2>
             <p>Verify if table object works as an array</p>
+            <pre>
+              <code class="lua">array.is_array({ 'a' = 1 })
+-- false
+</code>
+            </pre>
           </div>
           <div id="is_empty">
             <h2>
               <code>array.is_empty(obj:table):boolean</code>
             </h2>
             <p>Check if parameter is an empty table</p>
+            <pre>
+              <code class="lua">array.is_empty({})
+-- true
+</code>
+            </pre>
           </div>
           <div id="last">
             <h2>
               <code>array.last(obj:table):*</code>
             </h2>
             <p>Return last element from the table</p>
+            <pre>
+              <code class="lua">array.last({ 'a', 'b', 'c', 'd' })
+-- 'd'
+</code>
+            </pre>
           </div>
           <div id="map">
             <h2>
               <code>array.map(obj:table,callback:function):*</code>
             </h2>
             <p>Create a new table of values by mapping each value in table through a transformation function</p>
+            <pre>
+              <code class="lua">local result = array.map({ 1, 2, 3 }, function(value)
+  return value * 2
+end)
+
+print(result)
+-- { 2, 4, 6 }
+</code>
+            </pre>
           </div>
           <div id="max">
             <h2>
               <code>array.max(obj:table):*</code>
             </h2>
             <p>Return maximum value from the table</p>
+            <pre>
+              <code class="lua">array.max({ 20, 22, 1, 3, 42, 30 })
+-- 42
+</code>
+            </pre>
           </div>
           <div id="min">
             <h2>
               <code>array.min(obj:table):*</code>
             </h2>
             <p>Return minimum value from the table</p>
+            <pre>
+              <code class="lua">array.min({ 20, 22, 1, 3, 42, 30 })
+-- 1
+</code>
+            </pre>
           </div>
           <div id="permutation">
             <h2>
               <code>array.permutation(obj:table):table</code>
             </h2>
             <p>Creates a new table returning all permutations of the length of the elements of the given table</p>
+            <pre>
+              <code class="lua">array.permutation({ 'lua', 'javascript', 'ruby' })
+--{
+--  { 'lua', 'javascript', 'ruby' },
+--  { 'javascript', 'lua', 'ruby' },
+--  { 'javascript', 'ruby', 'lua' },
+--  { 'lua', 'ruby', 'javascript' },
+--  { 'ruby', 'lua', 'javascript' },
+--  { 'ruby', 'javascript', 'lua' }
+--}
+</code>
+            </pre>
           </div>
           <div id="random">
             <h2>
               <code>array.random(obj:table):*</code>
             </h2>
             <p>Returns a value from a random key of the given array</p>
+            <pre>
+              <code class="lua">array.random({ 20, 22, 1, 3, 42, 30 })</code>
+            </pre>
           </div>
           <div id="reduce">
             <h2>
               <code>array.reduce(obj:table,callback:function,memo:table):*</code>
             </h2>
             <p>Applies a function against an accumulator and each value of the table to reduce it to a single value</p>
+            <pre>
+              <code class="lua">local result = array.reduce({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
+  return memo .. value
+end)
+
+print(result)
+-- 'abcde'
+</code>
+            </pre>
           </div>
           <div id="reduce_right">
             <h2>
               <code>array.reduce_right(obj:table,callback:function,memo:table):*</code>
             </h2>
             <p>This function is like reduce except that it interates over table&#x27;s elements from right to left</p>
+            <pre>
+              <code class="lua">local result = array.reduce({ 'a', 'b', 'c', 'd', 'e' }, function(memo, value)
+  return memo .. value
+end)
+
+print(result)
+-- 'abcde'
+</code>
+            </pre>
           </div>
           <div id="remove">
             <h2>
@@ -526,5 +689,10 @@
           </div>
       </main>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>
