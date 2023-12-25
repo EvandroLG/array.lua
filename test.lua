@@ -259,6 +259,16 @@ test('flat', function(a)
     array.flat({ 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' }),
     { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' }
   )
+
+  a.deep_equal(
+    array.flat({ 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' }, 1),
+    { 'a', 'b', 'c', 'd', 'e', 'f', { 'g', 'h' }, 'i', 'j' }
+  )
+
+  a.deep_equal(
+    array.flat({ 'a', 'b', 'c', { 'd', 'e', { 'f', { 'g', 'h' } } }, { 'i' }, 'j' }, 2),
+    { 'a', 'b', 'c', 'd', 'e', 'f', { 'g', 'h' }, 'i', 'j' }
+  )
 end)
 
 test('fill', function(a)
