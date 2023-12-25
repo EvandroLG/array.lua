@@ -426,15 +426,19 @@ array = {
     return output
   end,
 
-  -- Create a new table with the sub-table elements concatenated into it
-  -- @param obj {table}
+  -- Create a new table with the sub-table elements concatenated into it up to the specific depth
+  -- @param obj {table, depth}
   -- @return {table}
-  flat = function(obj)
+  flat = function(obj, depth)
+    if depth == nil then
+      depth = 1 / 0 -- Infinity
+    end
+    
     return array.reduce(obj, function(acc, item)
-      if array.is_array(item) then
+      if array.is_array(item) and depth > 0 then
         return array.concat(
           acc,
-          array.flat(item)
+          array.flat(item, depth - 1)
         )
       else
         table.insert(acc, item)
