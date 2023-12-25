@@ -428,14 +428,14 @@ print(result)
           </div>
           <div id="flat">
             <h2>
-              <code>array.flat(obj:table):table</code>
+              <code>array.flat(obj:table, depth: number):table</code>
             </h2>
-            <p>Create a new table with the sub-table elements concatenated into it</p>
+            <p>Create a new table with the sub-table elements concatenated into it up to the specific depth.</p>
             <pre>
-              <code class="lua">local result = array.flat({ 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' })
+              <code class="lua">local result = array.flat({ 'a', 'b', 'c', { 'd', 'e', 'f', { 'g', 'h' } }, { 'i' }, 'j' }, 1)
 
 print(result)
--- { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' }
+-- { 'a', 'b', 'c', 'd', 'e', 'f', { 'g', 'h' }, 'i', 'j' }
 </code>
             </pre>
           </div>
