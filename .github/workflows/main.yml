@@ -28,7 +28,11 @@ jobs:
 
       - name: Configure Lua header files for Luarocks
         run: |
-          sudo luarocks config --lua-version=5.3 --with-lua-include=/usr/include/lua5.3
+          export LUA_PATH=/usr/include/lua5.3
+          export LUA_DIR=/usr/include/lua5.3
+          sudo luarocks config variables.LUA_INCDIR /usr/include/lua5.3
+          sudo luarocks config variables.LUA_LIBDIR /usr/lib/x86_64-linux-gnu
+          sudo luarocks config variables.LUA_BINDIR /usr/bin
 
       - name: Install dependencies
         run: sudo make install_dependencies
