@@ -19,6 +19,9 @@ jobs:
     - name: Install Lua
       run: sudo apt-get install lua5.3
 
+    - name: Install Luarocks
+      run: sudo apt-get install luarocks
+
     - name: Install dependencies
       run: make install_dependencies
 
