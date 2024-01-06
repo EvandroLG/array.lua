@@ -32,4 +32,4 @@ jobs:
 
       - name: Run unit tests
         run: |
-          make test
+          LUA_PATH="./src/?.lua;./src/?/init.lua;./src/array/?.lua;;" lua test.lua
