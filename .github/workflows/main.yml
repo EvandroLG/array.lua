@@ -23,7 +23,7 @@ jobs:
       run: sudo apt-get install luarocks
 
     - name: Install dependencies
-      run: make install_dependencies
+      run: sudo make install_dependencies
 
     - name: Run unit tests
       run: |
