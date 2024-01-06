@@ -13,18 +13,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Install Lua
-      run: sudo apt-get install lua5.3
+      - name: Install Lua
+        run: sudo apt-get install lua5.3
 
-    - name: Install Luarocks
-      run: sudo apt-get install luarocks
+      - name: Install Lua development files
+        run: sudo apt-get install liblua5.3-dev
 
-    - name: Install dependencies
-      run: sudo make install_dependencies
+      - name: Install Luarocks
+        run: |
+          sudo apt-get install luarocks
 
-    - name: Run unit tests
-      run: |
-        make test
+      - name: Configure Lua header files for Luarocks
+        run: |
+          sudo luarocks config --lua-version=5.3 --with-lua-include=/usr/include/lua5.3
+
+      - name: Install dependencies
+        run: sudo make install_dependencies
+
+      - name: Run unit tests
+        run: |
+          make test
