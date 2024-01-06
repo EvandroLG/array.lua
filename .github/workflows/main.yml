@@ -10,29 +10,22 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        luaVersion: ["5.3"]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Install Lua
-        run: sudo apt-get install lua5.3
+      - uses: leafo/gh-actions-lua@v8
+        with:
+          luaVersion: ${{ matrix.luaVersion }}
 
-      - name: Install Lua development files
-        run: sudo apt-get install liblua5.3-dev
-
-      - name: Install Luarocks
-        run: |
-          sudo apt-get install luarocks
-
-      - name: Configure Lua header files for Luarocks
-        run: |
-          export LUA_PATH=/usr/include/lua5.3
-          export LUA_DIR=/usr/include/lua5.3
-          sudo luarocks config variables.LUA_INCDIR /usr/include/lua5.3
-          sudo luarocks config variables.LUA_LIBDIR /usr/lib/x86_64-linux-gnu
-          sudo luarocks config variables.LUA_BINDIR /usr/bin
+      - uses: leafo/gh-actions-luarocks@v4
 
       - name: Install dependencies
         run: sudo make install_dependencies
