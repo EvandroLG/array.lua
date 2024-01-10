@@ -425,3 +425,12 @@ test('chunk', function(a)
     }
   )
 end)
+
+test('flat_map', function(a)
+  a.deep_equal(
+    array.flat_map({ 1, 2, 3 }, function(value)
+      return { value, value * 2 }
+    end),
+    { 1, 2, 2, 4, 3, 6 }
+  )
+end)

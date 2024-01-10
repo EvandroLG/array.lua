@@ -641,6 +641,17 @@ array = {
     end
 
     return output
+  end,
+
+  -- Returns a new array-like table by applying a given callback to each element of the table, and then flattening the result by one level
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {table}
+  flat_map = function(obj, callback)
+    utils.raises_error(array, obj, 'flat_map')
+    local mapped = array.map(obj, callback)
+
+    return array.flat(mapped)
   end
 }
 
