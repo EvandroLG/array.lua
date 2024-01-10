@@ -434,3 +434,15 @@ test('flat_map', function(a)
     { 1, 2, 2, 4, 3, 6 }
   )
 end)
+
+test('key_by', function(a)
+  a.deep_equal(
+    array.key_by({ { id = 1, name = 'lua' }, { id = 2, name = 'javascript' } }, function(item)
+      return item.id
+    end),
+    {
+      [1] = { id = 1, name = 'lua' },
+      [2] = { id = 2, name = 'javascript' }
+    }
+  ) 
+end)

@@ -652,6 +652,20 @@ array = {
     local mapped = array.map(obj, callback)
 
     return array.flat(mapped)
+  end,
+
+  -- Creates a new table composed of keys generated from the results of running each element of the given table through the given callback
+  -- @param obj {table}
+  -- @param callback {function}
+  -- @return {table}
+  key_by = function(obj, callback)
+    utils.raises_error(array, obj, 'key_by')
+
+    return array.reduce(obj, function(accumulator, current)
+      local key = callback(current)
+      accumulator[key] = current
+      return accumulator
+    end, {})
   end
 }
 
