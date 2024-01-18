@@ -180,6 +180,11 @@
               </a>
             </li>
             <li>
+              <a href="#flat_map">
+                array.flat_map
+              </a>
+            </li>
+            <li>
               <a href="#from_pairs">
                 array.from_pairs
               </a>
@@ -212,6 +217,11 @@
             <li>
               <a href="#is_empty">
                 array.is_empty
+              </a>
+            </li>
+            <li>
+              <a href="#key_by">
+                array.key_by
               </a>
             </li>
             <li>
@@ -439,6 +449,21 @@ print(result)
 </code>
             </pre>
           </div>
+          <div id="flat_map">
+            <h2>
+              <code>array.flat_map(obj:table, callback: function):table</code>
+            </h2>
+            <p>Returns a new array-like table by applying a given callback to each element of the table, and then flattening the result by one level.</p>
+            <pre>
+              <code class="lua">local result = array.flat_map({ 1, 2, 3 }, function(value)
+  return { value, value * 2 }
+end)
+
+print(result)
+-- { 1, 2, 2, 4, 3, 6 }
+</code>
+            </pre>
+          </div>
           <div id="from_pairs">
             <h2>
               <code>array.from_pairs(obj1:table,obj2:table):table</code>
@@ -519,6 +544,21 @@ print(result)
             <pre>
               <code class="lua">array.is_empty({})
 -- true
+</code>
+            </pre>
+          </div>
+          <div id="key_by">
+            <h2>
+              <code>array.key_by(obj:table, callback:function):table</code>
+            </h2>
+            <p>Creates a new table composed of keys generated from the results of running each element of the given table through the given callback</p>
+            <pre>
+              <code class="lua">result = array.key_by({ { id = 1, name = 'Evandro' }, { id = 2, name = 'John' } }, function(item)
+  return item.id
+end)
+
+print(result)
+-- { [1] = { id = 1, name = 'Evandro' }, [2] = { id = 2, name = 'John' } }
 </code>
             </pre>
           </div>
