@@ -10,12 +10,12 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        luaVersion: ["5.3"]
+        luaVersion: ["5.4"]
 
     steps:
       - name: Checkout
@@ -32,4 +32,4 @@ jobs:
 
       - name: Run unit tests
         run: |
-          LUA_PATH="./src/?.lua;./src/?/init.lua;./src/array/?.lua;;" lua test.lua
+          LUA_PATH="./src/?.lua;./src/?/init.lua;;$(luarocks path --lr-path)" lua test.lua
